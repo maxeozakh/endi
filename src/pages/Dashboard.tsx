@@ -1,12 +1,14 @@
-import { Text, View } from 'react-native'
+import { Text, Button } from 'react-native'
 
+import { Container } from '../entities/Container/Container'
 import { MetricsList } from '../features/MetricsList/MetricsList'
 
-export const Dashboard = () => {
+export const Dashboard = ({ navigation }) => {
   return (
-    <View>
+    <Container>
       <Text>Dashboard</Text>
       <MetricsList />
-    </View>
+      <Button title="Add Record please??" onPress={() => navigation.push('Add record')} />
+    </Container>
   )
 }
