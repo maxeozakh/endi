@@ -8,7 +8,6 @@ interface MetricsListProps {}
 
 export const MetricsList: React.FC<MetricsListProps> = () => {
   const metrics = getMetrics()
-  console.log('metrics', metrics)
   return (
     <View>
       {metrics.map((metric, i) => {
