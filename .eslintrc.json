@@ -1,7 +1,7 @@
 {
   "extends": "universe",
   "rules": {
-    "no-unused-vars": ["error", { "args": "none" }],
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
     "semi": "off",
     "no-undef": "error",
     "no-console": "warn",
