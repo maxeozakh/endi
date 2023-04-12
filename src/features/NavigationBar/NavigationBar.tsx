@@ -12,16 +12,18 @@ export const NavigationBar = () => {
 
   return (
     <View style={styles.container}>
-      <Button title="PLUS" onPress={() => navigation.navigate('Add record')} />
+      <Button title="dashboard" onPress={() => navigation.navigate('Dashboard')} />
+      <Button title="new record" onPress={() => navigation.navigate('Add record')} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginBottom: 30,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
 })
