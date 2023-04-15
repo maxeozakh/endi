@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
 import { Tag } from '../../entities/Tag/Tag'
 import { getTags } from '../../shared/stores/userEntitiesStore'
@@ -9,18 +10,20 @@ interface TagsListProps {}
 export const TagsList: React.FC<TagsListProps> = () => {
   const tags = getTags()
   return (
-    <View style={styles.container}>
+    <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
       {tags.map((tagName, i) => {
         return <Tag key={i} name={tagName} />
       })}
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     display: 'flex',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '400%',
+    top: '25%',
     flexWrap: 'wrap',
   },
 })
