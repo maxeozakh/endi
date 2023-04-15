@@ -3,11 +3,16 @@ import { devtools, persist } from 'zustand/middleware'
 
 import { DEFAULT_METRICS, DEFAULT_TAGS } from '../constants'
 
+export interface UserMetric {
+  name: string
+  color: string
+  id: string
+}
 interface UserEntitiesState {
   tags: string[]
-  metrics: string[]
+  metrics: UserMetric[]
   addTags: (tags: string[]) => void
-  addMetrics: (metrics: string[]) => void
+  addMetrics: (metrics: UserMetric[]) => void
 }
 
 export const useUserEntitiesState = create<UserEntitiesState>()(

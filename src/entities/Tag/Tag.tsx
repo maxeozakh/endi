@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics'
 import React from 'react'
 import { StyleSheet, Pressable, Text } from 'react-native'
 
@@ -9,11 +10,13 @@ export const Tag = (props: TagProps) => {
   const [isActive, setIsActive] = React.useState(false)
   const backgroundColor = isActive ? '#000' : '#fff'
   const color = isActive ? '#fff' : '#000'
+  const handleOnPress = () => {
+    setIsActive(!isActive)
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  }
 
   return (
-    <Pressable
-      style={[styles.container, { backgroundColor }]}
-      onPress={() => setIsActive(!isActive)}>
+    <Pressable onPress={handleOnPress} style={[styles.container, { backgroundColor }]}>
       <Text style={[styles.text, { color }]}>{name}</Text>
     </Pressable>
   )

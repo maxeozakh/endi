@@ -11,7 +11,7 @@ export const MetricsList: React.FC<MetricsListProps> = () => {
   return (
     <View>
       {metrics.map((metric, i) => {
-        return <Card key={i} title={metric} />
+        return <Card key={i} title={metric.name} />
       })}
     </View>
   )

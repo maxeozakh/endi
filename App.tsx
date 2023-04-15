@@ -10,7 +10,7 @@ export default function App() {
   const Stack = createNativeStackNavigator()
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Track metrics">
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: true }} />
         <Stack.Screen name="Track tags" component={TrackTags} options={{ headerShown: true }} />
         <Stack.Screen
