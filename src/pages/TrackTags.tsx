@@ -11,7 +11,7 @@ export const TrackTags = () => {
   return (
     <Container>
       <TagsList />
-      <Button title="Track metrics" onPress={() => navigation.navigate('Track metrics')} />
+      <Button title="Track metrics" onPress={() => navigation.push('Track metrics')} />
     </Container>
   )
 }

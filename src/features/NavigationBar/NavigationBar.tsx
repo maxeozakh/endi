@@ -16,8 +16,9 @@ export const NavigationBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 30,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
+    color: '#fff',
+    paddingBottom: 30,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',

@@ -6,7 +6,7 @@ export const Card = (props: Props) => {
   const { title } = props
   return (
     <View>
-      <Text>{title}</Text>
+      <Text style={{ color: 'white' }}>{title}</Text>
     </View>
   )
 }

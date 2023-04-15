@@ -9,7 +9,18 @@ import { TrackTags } from './src/pages/TrackTags'
 export default function App() {
   const Stack = createNativeStackNavigator()
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        dark: true,
+        colors: {
+          primary: 'white',
+          background: '#000',
+          card: '#000',
+          text: 'white',
+          border: '#f3f3f3',
+          notification: '#000',
+        },
+      }}>
       <Stack.Navigator initialRouteName="Track metrics">
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: true }} />
         <Stack.Screen name="Track tags" component={TrackTags} options={{ headerShown: true }} />
