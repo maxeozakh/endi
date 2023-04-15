@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, Pressable, Text } from 'react-native'
-import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated'
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
-import { COLORS } from '../../shared/ui/constants'
+import { ANIMATION_CONFIG, COLORS } from '../../shared/ui/constants'
 
 interface TagProps {
   name: string
@@ -10,25 +10,16 @@ interface TagProps {
 export const Tag = (props: TagProps) => {
   const { name } = props
   const [isActive, setIsActive] = React.useState(false)
-  const backgroundColor = isActive ? '#fff' : COLORS.GRAY_DARK
-  const color = isActive ? '#000' : '#fff'
   const handleOnPress = () => {
     setIsActive(!isActive)
   }
 
-  // const config = {
-  //   duration: 500,
-  //   easing: Easing.ease(1),
-  // }
-  const easingFunc = Easing.bezier(0.25, 0.1, 0.25, 1)
-  const config = {
-    duration: 150,
-    easing: easingFunc,
-  }
+  const backgroundColor = isActive ? '#fff' : COLORS.GRAY_DARK
+  const color = isActive ? '#000' : '#fff'
   const animatedStyles = useAnimatedStyle(() => {
     return {
-      backgroundColor: withTiming(backgroundColor, config),
-      color: withTiming(color, config),
+      backgroundColor: withTiming(backgroundColor, ANIMATION_CONFIG),
+      color: withTiming(color, ANIMATION_CONFIG),
     }
   })
 
@@ -51,7 +42,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    // transitionDuration: '0.4s',
   },
   text: {
     fontSize: 34,

@@ -43,3 +43,11 @@ export const DEFAULT_METRICS = [
   { name: 'focus', color: '#E7BDCA', id: '2' },
   { name: 'fun', color: '#5A86E9', id: '3' },
 ]
+
+export const ESTIMATE_MAP = {
+  1: { label: 'horrible', emoji: '🥵' },
+  2: { label: 'bad', emoji: '😢' },
+  3: { label: 'meh', emoji: '😐' },
+  4: { label: 'good', emoji: '😊' },
+  5: { label: 'great', emoji: '🤩' },
+}
