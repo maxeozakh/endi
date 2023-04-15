@@ -5,6 +5,7 @@ import { NavigationBar } from './src/features/NavigationBar/NavigationBar'
 import { Dashboard } from './src/pages/Dashboard'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
+import { Routes } from './src/shared/constants'
 
 export default function App() {
   const Stack = createNativeStackNavigator()
@@ -22,12 +23,20 @@ export default function App() {
         },
       }}>
       <Stack.Navigator initialRouteName="Dashboard">
-        <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
-        <Stack.Screen name="Track tags" component={TrackTags} options={{ headerShown: true }} />
         <Stack.Screen
-          name="Track metrics"
+          name={Routes.DASHBOARD}
+          component={Dashboard}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={Routes.TRACK_TAGS}
+          component={TrackTags}
+          options={{ headerShown: true, headerTitle: 'Record tags' }}
+        />
+        <Stack.Screen
+          name={Routes.TRACK_METRICS}
           component={TrackMetrics}
-          options={{ headerShown: true }}
+          options={{ headerShown: true, headerTitle: 'Record metrics' }}
         />
       </Stack.Navigator>
       <NavigationBar />

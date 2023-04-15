@@ -24,11 +24,11 @@ export const Tag = (props: TagProps) => {
   })
 
   return (
-    <Animated.View style={[styles.container, animatedStyles]}>
-      <Pressable onPress={handleOnPress}>
+    <Pressable onPress={handleOnPress}>
+      <Animated.View style={[styles.container, animatedStyles]}>
         <Text style={[styles.text, { color }]}>{name}</Text>
-      </Pressable>
-    </Animated.View>
+      </Animated.View>
+    </Pressable>
   )
 }
 

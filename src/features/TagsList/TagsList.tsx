@@ -21,7 +21,7 @@ export const TagsList: React.FC<TagsListProps> = () => {
 const styles = StyleSheet.create({
   contentContainer: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     width: '400%',
     top: '25%',
     flexWrap: 'wrap',
