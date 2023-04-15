@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Pressable, Text } from 'react-native'
+import Animated, { Easing, useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { COLORS } from '../../shared/ui/constants'
 
@@ -15,10 +16,28 @@ export const Tag = (props: TagProps) => {
     setIsActive(!isActive)
   }
 
+  // const config = {
+  //   duration: 500,
+  //   easing: Easing.ease(1),
+  // }
+  const easingFunc = Easing.bezier(0.25, 0.1, 0.25, 1)
+  const config = {
+    duration: 150,
+    easing: easingFunc,
+  }
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      backgroundColor: withTiming(backgroundColor, config),
+      color: withTiming(color, config),
+    }
+  })
+
   return (
-    <Pressable onPress={handleOnPress} style={[styles.container, { backgroundColor }]}>
-      <Text style={[styles.text, { color }]}>{name}</Text>
-    </Pressable>
+    <Animated.View style={[styles.container, animatedStyles]}>
+      <Pressable onPress={handleOnPress}>
+        <Text style={[styles.text, { color }]}>{name}</Text>
+      </Pressable>
+    </Animated.View>
   )
 }
 
@@ -32,8 +51,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    transitionDuration: '0.4s',
-    transitionProperty: 'background-color',
+    // transitionDuration: '0.4s',
   },
   text: {
     fontSize: 34,
