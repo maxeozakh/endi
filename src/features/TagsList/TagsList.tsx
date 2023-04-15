@@ -10,13 +10,13 @@ interface TagsListProps {}
 export const TagsList: React.FC<TagsListProps> = () => {
   const tags = getTags()
   return (
-    <Container>
-      <View style={styles.container}>
-        {tags.map((tagName, i) => {
-          return <Tag key={i} name={tagName} />
-        })}
-      </View>
-    </Container>
+    // <Container>
+    <View style={styles.container}>
+      {tags.map((tagName, i) => {
+        return <Tag key={i} name={tagName} />
+      })}
+    </View>
+    // </Container>
   )
 }
 

@@ -1,19 +1,15 @@
 import { useNavigation } from '@react-navigation/native'
 import { Button, StyleSheet, View } from 'react-native'
 
+import { navigationProps } from '../../shared/interfaces'
+
 export const NavigationBar = () => {
   const navigation = useNavigation<navigationProps>()
-
-  type navigationProps = {
-    navigate: (screen?: string) => void
-    goBack: () => void
-    reset: (index: number, routeNames: string[]) => void
-  }
 
   return (
     <View style={styles.container}>
       <Button title="dashboard" onPress={() => navigation.navigate('Dashboard')} />
-      <Button title="new record" onPress={() => navigation.navigate('Add record')} />
+      <Button title="new record" onPress={() => navigation.navigate('Track tags')} />
     </View>
   )
 }
