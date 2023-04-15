@@ -31,7 +31,7 @@ export default function App() {
         <Stack.Screen
           name={Routes.TRACK_TAGS}
           component={TrackTags}
-          options={{ headerShown: true, headerTitle: 'Record tags' }}
+          options={{ headerShown: false, headerTitle: 'Record tags' }}
         />
         <Stack.Screen
           name={Routes.TRACK_METRICS}

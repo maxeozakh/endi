@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics'
 import React from 'react'
 import { Pressable, StyleSheet, Text } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
@@ -34,6 +35,7 @@ export const EstimateButton: React.FC<EstimateButtonProps> = ({
   return (
     <Pressable
       onPress={() => {
+        Haptics.selectionAsync()
         onSelectCallback(level)
       }}>
       <Animated.View style={[styles.container, animatedBackroundStyle]}>

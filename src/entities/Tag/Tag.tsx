@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics'
 import React from 'react'
 import { StyleSheet, Pressable, Text } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
@@ -11,6 +12,7 @@ export const Tag = (props: TagProps) => {
   const { name } = props
   const [isActive, setIsActive] = React.useState(false)
   const handleOnPress = () => {
+    Haptics.selectionAsync()
     setIsActive(!isActive)
   }
 

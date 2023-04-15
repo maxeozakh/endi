@@ -4,7 +4,7 @@ import { Container } from '../entities/Container/Container'
 
 export const Dashboard = () => {
   return (
-    <Container>
+    <Container justifyContent="center">
       <Text style={{ fontSize: 50 }}>👋</Text>
     </Container>
   )
