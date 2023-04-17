@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import { Tag } from '../../entities/Tag/Tag'
-import { getTags } from '../../shared/stores/userEntitiesStore'
+import { getUserTags } from '../../shared/stores/userEntities'
 
 interface TagsListProps {}
 
 export const TagsList: React.FC<TagsListProps> = () => {
-  const tags = getTags()
+  const tags = getUserTags()
   return (
     <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
       {tags.map((tagName, i) => {

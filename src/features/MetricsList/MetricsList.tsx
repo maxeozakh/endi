@@ -2,12 +2,12 @@ import React from 'react'
 import { View } from 'react-native'
 
 import { Card } from '../../entities/Card/Card'
-import { getMetrics } from '../../shared/stores/userEntitiesStore'
+import { getUserMetrics } from '../../shared/stores/userEntities'
 
 interface MetricsListProps {}
 
 export const MetricsList: React.FC<MetricsListProps> = () => {
-  const metrics = getMetrics()
+  const metrics = getUserMetrics()
   return (
     <View>
       {metrics.map((metric, i) => {
