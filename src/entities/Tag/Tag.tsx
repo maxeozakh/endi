@@ -3,17 +3,22 @@ import React from 'react'
 import { StyleSheet, Pressable, Text } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
+import { useCreateRecordStore } from '../../shared/stores/createRecord'
 import { ANIMATION_CONFIG, COLORS } from '../../shared/ui/constants'
 
 interface TagProps {
   name: string
+  isActive: boolean
 }
-export const Tag = (props: TagProps) => {
-  const { name } = props
-  const [isActive, setIsActive] = React.useState(false)
+export const Tag: React.FC<TagProps> = ({ name, isActive }) => {
+  const { addTagsToTheRecord, removeTagFromTheRecord } = useCreateRecordStore()
+
   const handleOnPress = () => {
+    if (isActive) {
+      removeTagFromTheRecord(name)
+    } else addTagsToTheRecord([name])
+
     Haptics.selectionAsync()
-    setIsActive(!isActive)
   }
 
   const backgroundColor = isActive ? '#fff' : COLORS.GRAY_DARK
