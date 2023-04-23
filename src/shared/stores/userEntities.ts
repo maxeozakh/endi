@@ -8,14 +8,18 @@ export interface UserMetric {
   color: string
   id: string
 }
-interface UserEntitiesStore {
+
+type State = {
   tags: string[]
   metrics: UserMetric[]
+}
+
+type Actions = {
   addUserTags: (tags: string[]) => void
   addUserMetrics: (metrics: UserMetric[]) => void
 }
 
-export const useUserEntitiesState = create<UserEntitiesStore>()(
+export const useUserEntitiesState = create<State & Actions>()(
   devtools(
     persist(
       (set) => ({

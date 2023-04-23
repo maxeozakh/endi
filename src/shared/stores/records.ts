@@ -8,12 +8,15 @@ interface RecordItem {
   metrics: Record<string, number>
 }
 
-interface RecordsState {
+type State = {
   records: RecordItem[]
+}
+
+type Actions = {
   addRecord: (record: RecordItem) => void
 }
 
-export const useRecordsStore = create<RecordsState>()(
+export const useRecordsStore = create<State & Actions>()(
   devtools(
     persist(
       (set) => ({
