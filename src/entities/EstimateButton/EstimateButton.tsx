@@ -6,11 +6,12 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { ANIMATION_CONFIG } from '../../shared/ui/constants'
 
 interface EstimateButtonProps {
-  onSelectCallback: (level: number) => void
+  onSelectCallback: (metricName: string, level: number) => void
   label: string
   emoji: string
   level: number
   isActive: boolean
+  name: string
 }
 
 export const EstimateButton: React.FC<EstimateButtonProps> = ({
@@ -19,6 +20,7 @@ export const EstimateButton: React.FC<EstimateButtonProps> = ({
   isActive,
   level,
   emoji,
+  name,
 }) => {
   const backgroundColor = isActive ? '#000' : '#3838381a'
   const color = isActive ? '#fff' : '#000'
@@ -36,7 +38,7 @@ export const EstimateButton: React.FC<EstimateButtonProps> = ({
     <Pressable
       onPress={() => {
         Haptics.selectionAsync()
-        onSelectCallback(level)
+        onSelectCallback(name, level)
       }}>
       <Animated.View style={[styles.container, animatedBackroundStyle]}>
         <Animated.Text style={[styles.text, animatedTextStyle]}>{label}</Animated.Text>

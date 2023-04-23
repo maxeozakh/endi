@@ -1,15 +1,16 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
-interface Record {
+interface RecordItem {
   date: Date
   tags: string[]
-  metrics: string[]
+  metrics: Record<string, number>
 }
 
 interface RecordsState {
-  records: Record[]
-  addRecord: (record: Record) => void
+  records: RecordItem[]
+  addRecord: (record: RecordItem) => void
 }
 
 export const useRecordsStore = create<RecordsState>()(
@@ -21,7 +22,10 @@ export const useRecordsStore = create<RecordsState>()(
       }),
       {
         name: 'records-store',
+        storage: createJSONStorage(() => AsyncStorage),
       }
     )
   )
 )
+
+export const getRecords = () => useRecordsStore((state) => state.records)

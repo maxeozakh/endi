@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { EstimateButton } from '../../entities/EstimateButton/EstimateButton'
 import { ESTIMATE_MAP } from '../../shared/constants'
+import { getRecordedMetrics, useCreateRecordStore } from '../../shared/stores/createRecord'
 import { getUserMetrics } from '../../shared/stores/userEntities'
 
 interface Props {
@@ -11,8 +12,13 @@ interface Props {
 export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
   const metrics = getUserMetrics()
   const currentItem = metrics[index]
-  const [estimate, setEstimate] = React.useState<number | null>(null)
   const { name, color } = currentItem
+
+  const recordedMetrics = getRecordedMetrics()
+  const metricValue = recordedMetrics[name]
+
+  const { addMetricToTheRecord } = useCreateRecordStore()
+
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <View style={styles.buttonContainer}>
@@ -22,12 +28,13 @@ export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
             label={estimateData.label}
             emoji={estimateData.emoji}
             level={Number(level)}
-            onSelectCallback={setEstimate}
-            isActive={Number(level) === estimate}
+            onSelectCallback={addMetricToTheRecord}
+            isActive={Number(level) === metricValue}
+            name={name}
           />
         ))}
       </View>
-      <Text style={styles.hugeEmoji}>{estimate ? ESTIMATE_MAP[estimate].emoji : '🫥'}</Text>
+      <Text style={styles.hugeEmoji}>{metricValue ? ESTIMATE_MAP[metricValue].emoji : '🫥'}</Text>
       <Text style={styles.title}>{name}</Text>
     </View>
   )
