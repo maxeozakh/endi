@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 
+import { MetricGalleryCard } from '../../entities/MetricGalleryCard/MetricGalleryCard'
 import { getUserMetrics } from '../../shared/stores/userEntities'
-import { MetricGalleryCard } from '../MetricGalleryCard/MetricGalleryCard'
 
 export const MetricsGallery = () => {
   const metrics = getUserMetrics()
