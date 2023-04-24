@@ -3,12 +3,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { NavigationBar } from './src/features/NavigationBar/NavigationBar'
 import { Dashboard } from './src/pages/Dashboard'
+import { MetricData } from './src/pages/MetricData'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
 import { Routes } from './src/shared/constants'
+import { RootStackParamList } from './src/shared/interfaces'
 
 export default function App() {
-  const Stack = createNativeStackNavigator()
+  const Stack = createNativeStackNavigator<RootStackParamList>()
   return (
     <NavigationContainer
       theme={{
@@ -22,7 +24,7 @@ export default function App() {
           notification: '#000',
         },
       }}>
-      <Stack.Navigator initialRouteName="Dashboard">
+      <Stack.Navigator>
         <Stack.Screen
           name={Routes.DASHBOARD}
           component={Dashboard}
@@ -37,6 +39,13 @@ export default function App() {
           name={Routes.TRACK_METRICS}
           component={TrackMetrics}
           options={{ headerShown: true, headerTitle: 'Record metrics' }}
+        />
+        <Stack.Screen
+          name={Routes.METRIC_DATA}
+          component={MetricData}
+          options={(props) => ({
+            headerTitle: props.route.params.metricName,
+          })}
         />
       </Stack.Navigator>
       <NavigationBar />

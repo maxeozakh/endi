@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { ESTIMATE_MAP } from '../../shared/constants'
 import { MetricValue } from '../../shared/stores/records'
@@ -10,6 +10,7 @@ interface MetricStatsCardProps {
   color: string
   value: MetricValue
   lastEditLabel: string
+  onPressCallback: () => void
 }
 
 export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
@@ -17,9 +18,10 @@ export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
   color,
   value,
   lastEditLabel,
+  onPressCallback,
 }) => {
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPressCallback} style={styles.container}>
       <View style={styles.leftColumn}>
         <View style={[styles.emojiContainer, { backgroundColor: color }]}>
           <Text style={[styles.text, styles.emojiText]}>{ESTIMATE_MAP[value].emoji}</Text>
@@ -32,7 +34,7 @@ export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
       <View>
         <Text style={[styles.text, styles.lastEditText]}>{lastEditLabel}</Text>
       </View>
-    </View>
+    </Pressable>
   )
 }
 
