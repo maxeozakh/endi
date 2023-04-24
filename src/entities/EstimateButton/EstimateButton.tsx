@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { ANIMATION_CONFIG } from '../../shared/ui/constants'
+import { getRecordedMetricValue } from '../../shared/stores/createRecord'
 
 interface EstimateButtonProps {
   onSelectCallback: (metricName: string, level: number) => void
@@ -34,11 +35,16 @@ export const EstimateButton: React.FC<EstimateButtonProps> = ({
       color: withTiming(color, ANIMATION_CONFIG),
     }
   })
+  const recordedValue = getRecordedMetricValue(metricName)
+
+  // if we press the same button twice, we want to remove the value
+  const valueToRecord = recordedValue === value ? 0 : value
+
   return (
     <Pressable
       onPress={() => {
         Haptics.selectionAsync()
-        onSelectCallback(metricName, value)
+        onSelectCallback(metricName, valueToRecord)
       }}>
       <Animated.View style={[styles.container, animatedBackroundStyle]}>
         <Animated.Text style={[styles.text, animatedTextStyle]}>{label}</Animated.Text>
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-
   text: {
     fontSize: 20,
   },

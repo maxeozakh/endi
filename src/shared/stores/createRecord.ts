@@ -42,5 +42,10 @@ export const useCreateRecordStore = create<CreateRecordStore>()(
 export const getRecordedTags = () => useCreateRecordStore((state) => state.tags)
 export const getRecordedMetrics = () => useCreateRecordStore((state) => state.metrics)
 
+export const getRecordedMetricValue = (metricName: string) => {
+  const metricValue = useCreateRecordStore((state) => state.metrics[metricName]) || null
+  return metricValue
+}
+
 export const getRecordedData = () =>
   useCreateRecordStore((state) => ({ tags: state.tags, metrics: state.metrics }))
