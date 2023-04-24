@@ -26,7 +26,7 @@ export const TrackMetrics = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
   }
   return (
-    <Container>
+    <Container padding={0}>
       <MetricsGallery />
       <Button label="Create record" onPress={handleCreateRecord} />
     </Container>

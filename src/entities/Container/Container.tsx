@@ -5,19 +5,20 @@ interface ContainerProps {
   children: React.ReactNode
   justifyContent?: 'space-between' | 'flex-start' | 'flex-end' | 'center'
   flexWrap?: 'wrap' | 'nowrap'
+  padding?: number
 }
 
 export const Container: React.FC<ContainerProps> = ({
   children,
   justifyContent = 'space-between',
   flexWrap = 'wrap',
+  padding = 8,
 }) => {
-  return <View style={[styles.container, { justifyContent, flexWrap }]}>{children}</View>
+  return <View style={[styles.container, { justifyContent, flexWrap, padding }]}>{children}</View>
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
     height: '100%',
     backgroundColor: '#000',
   },
