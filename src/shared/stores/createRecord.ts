@@ -1,12 +1,14 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
+import { MetricValue } from './records'
+
 export interface CreateRecordStore {
   tags: string[]
-  metrics: Record<string, number | null>
+  metrics: Record<string, MetricValue | null>
   addTagsToTheRecord: (tags: string[]) => void
   removeTagFromTheRecord: (tag: string) => void
-  addMetricToTheRecord: (metric: string, value: number | null) => void
+  addMetricToTheRecord: (metric: string, value: MetricValue | null) => void
   removeMetricToTheRecord: (metric: string) => void
   reset: () => void
 }
@@ -21,7 +23,7 @@ export const useCreateRecordStore = create<CreateRecordStore>()(
       removeTagFromTheRecord: (tag: string) =>
         set((state) => ({ tags: state.tags.filter((t) => t !== tag) })),
 
-      addMetricToTheRecord: (metric: string, value: number | null) =>
+      addMetricToTheRecord: (metric: string, value: MetricValue | null) =>
         set((state) => ({ metrics: { ...state.metrics, [metric]: value } })),
       removeMetricToTheRecord: (metric: string) =>
         set((state) => {

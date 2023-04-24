@@ -18,7 +18,7 @@ export const TrackMetrics = () => {
     addRecord({
       tags,
       metrics,
-      date: new Date(),
+      date: new Date().toString(),
     })
 
     navigation.navigate('Dashboard')

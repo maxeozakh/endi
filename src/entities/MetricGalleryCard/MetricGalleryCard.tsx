@@ -19,10 +19,13 @@ export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
 
   const { addMetricToTheRecord } = useCreateRecordStore()
 
+  // remore 0 level that represents "unknown"
+  const estimatesDataForButtons = Object.entries(ESTIMATE_MAP).slice(1, 6)
+
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <View style={styles.buttonContainer}>
-        {Object.entries(ESTIMATE_MAP).map(([level, estimateData]) => (
+        {estimatesDataForButtons.map(([level, estimateData]) => (
           <EstimateButton
             key={level}
             label={estimateData.label}

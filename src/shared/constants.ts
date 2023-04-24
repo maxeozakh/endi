@@ -45,6 +45,7 @@ export const DEFAULT_METRICS = [
 ]
 
 export const ESTIMATE_MAP = {
+  0: { label: 'unknown', emoji: '🫥' },
   1: { label: 'horrible', emoji: '🥵' },
   2: { label: 'bad', emoji: '😢' },
   3: { label: 'meh', emoji: '😐' },

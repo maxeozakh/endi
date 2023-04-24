@@ -2,20 +2,21 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { ESTIMATE_MAP } from '../../shared/constants'
+import { MetricValue } from '../../shared/stores/records'
 import { COLORS } from '../../shared/ui/constants'
 
 interface MetricStatsCardProps {
   name: string
   color: string
-  value: 1 | 2 | 3 | 4 | 5
-  lastEdit: number
+  value: MetricValue
+  lastEditLabel: string
 }
 
 export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
   name,
   color,
   value,
-  lastEdit,
+  lastEditLabel,
 }) => {
   return (
     <View style={styles.container}>
@@ -29,9 +30,7 @@ export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
         </View>
       </View>
       <View>
-        <Text style={[styles.text, styles.lastEditText]}>
-          {new Date(lastEdit).toLocaleDateString()}
-        </Text>
+        <Text style={[styles.text, styles.lastEditText]}>{lastEditLabel}</Text>
       </View>
     </View>
   )

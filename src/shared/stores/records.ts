@@ -2,10 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
+export type MetricValue = 1 | 2 | 3 | 4 | 5 | 0
 interface RecordItem {
-  date: Date
+  date: string
   tags: string[]
-  metrics: Record<string, number>
+  metrics: Record<string, MetricValue>
 }
 
 type State = {
@@ -32,3 +33,16 @@ export const useRecordsStore = create<State & Actions>()(
 )
 
 export const getRecords = () => useRecordsStore((state) => state.records)
+
+export const getLastRecord = () =>
+  useRecordsStore(
+    (state) =>
+      state.records.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]
+  )
+
+export const getLastRecordedMetric = (metricName: string) =>
+  useRecordsStore((state) =>
+    state.records
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .find((record) => record.metrics[metricName])
+  )
