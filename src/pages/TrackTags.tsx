@@ -9,7 +9,7 @@ import { navigationProps } from '../shared/interfaces'
 export const TrackTags = () => {
   const navigation = useNavigation<navigationProps>()
   return (
-    <Container>
+    <Container flexWrap="nowrap">
       <TagsList />
       <Button label="Track metrics" onPress={() => navigation.push('Track metrics')} />
     </Container>
