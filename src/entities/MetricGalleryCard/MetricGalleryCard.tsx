@@ -25,15 +25,15 @@ export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
   return (
     <View style={[styles.container, { backgroundColor: color }]}>
       <View style={styles.buttonContainer}>
-        {estimatesDataForButtons.map(([level, estimateData]) => (
+        {estimatesDataForButtons.map(([value, estimateData]) => (
           <EstimateButton
-            key={level}
+            key={value}
             label={estimateData.label}
             emoji={estimateData.emoji}
-            level={Number(level)}
+            value={Number(value)}
             onSelectCallback={addMetricToTheRecord}
-            isActive={Number(level) === metricValue}
-            name={name}
+            isActive={Number(value) === metricValue}
+            metricName={name}
           />
         ))}
       </View>

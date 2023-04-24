@@ -9,18 +9,18 @@ interface EstimateButtonProps {
   onSelectCallback: (metricName: string, level: number) => void
   label: string
   emoji: string
-  level: number
+  value: number
   isActive: boolean
-  name: string
+  metricName: string
 }
 
 export const EstimateButton: React.FC<EstimateButtonProps> = ({
   onSelectCallback,
   label,
   isActive,
-  level,
+  value,
   emoji,
-  name,
+  metricName,
 }) => {
   const backgroundColor = isActive ? '#000' : '#3838381a'
   const color = isActive ? '#fff' : '#000'
@@ -38,7 +38,7 @@ export const EstimateButton: React.FC<EstimateButtonProps> = ({
     <Pressable
       onPress={() => {
         Haptics.selectionAsync()
-        onSelectCallback(name, level)
+        onSelectCallback(metricName, value)
       }}>
       <Animated.View style={[styles.container, animatedBackroundStyle]}>
         <Animated.Text style={[styles.text, animatedTextStyle]}>{label}</Animated.Text>
