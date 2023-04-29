@@ -5,6 +5,7 @@ export const COLORS = {
   GRAY_MEDIUM: '#616161',
   GRAY_LIGHT: '#8e8e8e',
   RED_LIGHT: '#FF005C',
+  GREEN_LIGHT: '#21FF52',
 }
 
 export const ANIMATION_CONFIG = {
