@@ -7,12 +7,13 @@ import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
 import { MetricsGallery } from '../features/MetricsGallery/MetricsGallery'
 import { navigationProps } from '../shared/interfaces'
-import { getRecordedData } from '../shared/stores/createRecord'
+import { getRecordedData, useCreateRecordStore } from '../shared/stores/createRecord'
 import { useRecordsStore } from '../shared/stores/records'
 
 export const TrackMetrics = () => {
   const navigation = useNavigation<navigationProps>()
   const { addRecord } = useRecordsStore()
+  const { resetCreationState } = useCreateRecordStore()
   const { tags, metrics } = getRecordedData()
 
   const handleCreateRecord = () => {
@@ -25,6 +26,7 @@ export const TrackMetrics = () => {
     navigation.navigate('Dashboard')
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
+    resetCreationState()
   }
   return (
     <Container padding={0}>

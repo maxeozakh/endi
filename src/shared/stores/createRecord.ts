@@ -3,17 +3,20 @@ import { devtools } from 'zustand/middleware'
 
 import { MetricValue } from './records'
 
-export interface CreateRecordStore {
+interface State {
   tags: string[]
   metrics: Record<string, MetricValue | null>
+}
+
+interface Actions {
   addTagsToTheRecord: (tags: string[]) => void
   removeTagFromTheRecord: (tag: string) => void
   addMetricToTheRecord: (metric: string, value: MetricValue | null) => void
   removeMetricToTheRecord: (metric: string) => void
-  reset: () => void
+  resetCreationState: () => void
 }
 
-export const useCreateRecordStore = create<CreateRecordStore>()(
+export const useCreateRecordStore = create<State & Actions>()(
   devtools(
     (set) => ({
       tags: [],
@@ -31,7 +34,7 @@ export const useCreateRecordStore = create<CreateRecordStore>()(
           return state.metrics
         }),
 
-      reset: () => set({ tags: [], metrics: {} }),
+      resetCreationState: () => set({ tags: [], metrics: {} }),
     }),
     {
       name: 'create-record-store',
