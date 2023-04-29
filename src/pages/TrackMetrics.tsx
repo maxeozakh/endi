@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import * as Haptics from 'expo-haptics'
 import React from 'react'
+import { View } from 'react-native'
 
 import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
@@ -28,7 +29,9 @@ export const TrackMetrics = () => {
   return (
     <Container padding={0}>
       <MetricsGallery />
-      <Button label="Create record" onPress={handleCreateRecord} />
+      <View style={{ paddingHorizontal: 8, paddingBottom: 8 }}>
+        <Button label="Create record" onPress={handleCreateRecord} />
+      </View>
     </Container>
   )
 }
