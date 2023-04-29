@@ -37,3 +37,5 @@ export const useUserEntitiesState = create<State & Actions>()(
 
 export const getUserTags = () => useUserEntitiesState((state) => state.tags)
 export const getUserMetrics = () => useUserEntitiesState((state) => state.metrics)
+export const getUserMetricByName = (name: string) =>
+  useUserEntitiesState((state) => state.metrics.find((metric) => metric.name === name))
