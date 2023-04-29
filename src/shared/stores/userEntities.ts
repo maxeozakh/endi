@@ -19,7 +19,7 @@ type Actions = {
   addUserMetrics: (metrics: UserMetric[]) => void
 }
 
-export const useUserEntitiesState = create<State & Actions>()(
+export const useUserEntitiesStore = create<State & Actions>()(
   devtools(
     persist(
       (set) => ({
@@ -35,7 +35,7 @@ export const useUserEntitiesState = create<State & Actions>()(
   )
 )
 
-export const getUserTags = () => useUserEntitiesState((state) => state.tags)
-export const getUserMetrics = () => useUserEntitiesState((state) => state.metrics)
+export const getUserTags = () => useUserEntitiesStore((state) => state.tags)
+export const getUserMetrics = () => useUserEntitiesStore((state) => state.metrics)
 export const getUserMetricByName = (name: string) =>
-  useUserEntitiesState((state) => state.metrics.find((metric) => metric.name === name))
+  useUserEntitiesStore((state) => state.metrics.find((metric) => metric.name === name))
