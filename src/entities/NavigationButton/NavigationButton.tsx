@@ -28,10 +28,13 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 
     if (!navigationState) return
 
-    const { routeNames, index } = navigationState
+    const { routes, index } = navigationState
     if (
-      routeNames[index] === route ||
-      (route === Routes.TRACK_TAGS && routeNames[index] === Routes.TRACK_METRICS)
+      routes[index].name === route ||
+      // for the tracking set active both for tags and metrics
+      (route === Routes.TRACK_TAGS && routes[index].name === Routes.TRACK_METRICS) ||
+      // also for the dashboard & metric data too
+      (route === Routes.DASHBOARD && routes[index].name === Routes.METRIC_DATA)
     ) {
       setIsActive(true)
     } else {
