@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import * as Haptics from 'expo-haptics'
 import React from 'react'
 import { View } from 'react-native'
+import Toast from 'react-native-toast-message'
 
 import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
@@ -25,7 +26,14 @@ export const TrackMetrics = () => {
 
     navigation.navigate('Dashboard')
 
+    Toast.show({
+      type: 'info',
+      text1: '',
+      text2: 'record was created!',
+    })
+
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
+
     resetCreationState()
   }
   return (

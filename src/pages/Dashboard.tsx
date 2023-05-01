@@ -14,6 +14,7 @@ export const Dashboard = () => {
   // const { resetData, insertTestData } = useTestData()
   const records = getRecords()
   const isAnyRecords = records.length > 0
+
   return (
     <Container justifyContent="center">
       {/* <Button title="reset" onPress={resetData} /> */}
