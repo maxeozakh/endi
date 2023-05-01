@@ -1,9 +1,14 @@
-import { useRecordsStore, getRecords } from './stores/records'
+import { RecordItem, useRecordsStore } from './stores/records'
 import testData from './test_data/data.json'
 
 export const useTestData = () => {
-  const { addRecord } = useRecordsStore()
-  testData.forEach((record) => console.log(record))
-  console.log(getRecords())
-  console.log(addRecord)
+  const { addRecord, resetAllRecords } = useRecordsStore()
+  const insertTestData = () =>
+    testData.forEach((record) => addRecord(record as unknown as RecordItem))
+  const resetData = () => {
+    resetAllRecords()
+  }
+  // testData.forEach((record) => console.log(record))
+
+  return { insertTestData, resetData }
 }

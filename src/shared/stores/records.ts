@@ -6,7 +6,7 @@ import { getWeekStructure } from '../../features/MetricChart/utils'
 import { isInThisWeek } from '../utils'
 
 export type MetricValue = 1 | 2 | 3 | 4 | 5 | 0
-interface RecordItem {
+export interface RecordItem {
   date: string
   tags: string[]
   metrics: Record<string, MetricValue>
@@ -18,6 +18,7 @@ type State = {
 
 type Actions = {
   addRecord: (record: RecordItem) => void
+  resetAllRecords: () => void
 }
 
 export const useRecordsStore = create<State & Actions>()(
@@ -26,6 +27,7 @@ export const useRecordsStore = create<State & Actions>()(
       (set) => ({
         records: [],
         addRecord: (record) => set((state) => ({ records: [...state.records, record] })),
+        resetAllRecords: () => set((state) => ({ records: [] })),
       }),
       {
         name: 'records-store',
