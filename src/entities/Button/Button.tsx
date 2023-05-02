@@ -7,9 +7,10 @@ interface ButtonProps {
   label?: string
   onPress: () => void
   children?: React.ReactNode
+  fontSize?: number
 }
 
-export const Button: React.FC<ButtonProps> = ({ label, onPress, children }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onPress, children, fontSize }) => {
   const [isPress, setIsPress] = React.useState(false)
 
   const touchProps = {
@@ -22,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({ label, onPress, children }) => {
 
   return (
     <TouchableHighlight style={styles.container} {...touchProps}>
-      <Text style={styles.text}>{children || label}</Text>
+      <Text style={[styles.text, { fontSize }]}>{children || label}</Text>
     </TouchableHighlight>
   )
 }
