@@ -4,11 +4,12 @@ import { StyleSheet, Text, TouchableHighlight } from 'react-native'
 import { COLORS } from '../../shared/ui/constants'
 
 interface ButtonProps {
-  label: string
+  label?: string
   onPress: () => void
+  children?: React.ReactNode
 }
 
-export const Button: React.FC<ButtonProps> = ({ label, onPress }) => {
+export const Button: React.FC<ButtonProps> = ({ label, onPress, children }) => {
   const [isPress, setIsPress] = React.useState(false)
 
   const touchProps = {
@@ -21,9 +22,7 @@ export const Button: React.FC<ButtonProps> = ({ label, onPress }) => {
 
   return (
     <TouchableHighlight style={styles.container} {...touchProps}>
-      {/* <Pressable> */}
-      <Text style={styles.text}>{label}</Text>
-      {/* </Pressable> */}
+      <Text style={styles.text}>{children || label}</Text>
     </TouchableHighlight>
   )
 }
