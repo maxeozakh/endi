@@ -62,7 +62,6 @@ export const useInsights = (period: Period = Period.WEEK) => {
       // prevent NaN cases when correlation is 0
       if (Math.abs(correlation) < 0.1 || !recordsWithTagCount) {
         return { tag, correlation: null }
-        // return
       }
 
       return {

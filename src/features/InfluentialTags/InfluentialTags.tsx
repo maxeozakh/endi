@@ -12,6 +12,10 @@ export const InfluentialTags: React.FC<InfluentialTagsProps> = ({ metricName }) 
   const { getCorrelationsByMetric } = useInsights()
   const correlations = getCorrelationsByMetric(metricName)
 
+  if (correlations.length === 0) {
+    return null
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Influential tags</Text>
