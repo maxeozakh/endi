@@ -8,14 +8,21 @@ interface ButtonProps {
   onPress: () => void
   children?: React.ReactNode
   fontSize?: number
+  stylesProp?: Record<string, unknown>
 }
 
-export const Button: React.FC<ButtonProps> = ({ label, onPress, children, fontSize }) => {
+export const Button: React.FC<ButtonProps> = ({
+  label,
+  onPress,
+  children,
+  fontSize,
+  stylesProp = {},
+}) => {
   const [isPress, setIsPress] = React.useState(false)
 
   const touchProps = {
     activeOpacity: 1,
-    style: isPress ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
+    style: isPress ? { ...styles.btnPress } : { ...styles.btnNormal, ...stylesProp }, // <-- but you can still apply other style changes
     onHideUnderlay: () => setIsPress(false),
     onShowUnderlay: () => setIsPress(true),
     onPress,
