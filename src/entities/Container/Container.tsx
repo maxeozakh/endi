@@ -12,7 +12,7 @@ export const Container: React.FC<ContainerProps> = ({
   children,
   justifyContent = 'space-between',
   flexWrap = 'wrap',
-  padding = 8,
+  padding = 0,
 }) => {
   return <View style={[styles.container, { justifyContent, flexWrap, padding }]}>{children}</View>
 }

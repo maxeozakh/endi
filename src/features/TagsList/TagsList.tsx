@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-start',
     width: '400%',
-    top: '25%',
     flexWrap: 'wrap',
   },
 })

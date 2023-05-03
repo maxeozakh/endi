@@ -60,4 +60,5 @@ export enum Routes {
   TRACK_METRICS = 'Track metrics',
   INITIAL = 'Dashboard',
   METRIC_DATA = 'Metric data',
+  ADD_NEW_TAGS = 'Add new tags',
 }

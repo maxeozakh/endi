@@ -18,4 +18,5 @@ export type RootStackParamList = {
   [Routes.SETTINGS]: undefined
   [Routes.TRACK_TAGS]: undefined
   [Routes.TRACK_METRICS]: undefined
+  [Routes.ADD_NEW_TAGS]: undefined
 }

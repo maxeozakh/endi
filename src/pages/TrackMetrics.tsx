@@ -39,7 +39,7 @@ export const TrackMetrics = () => {
   return (
     <Container padding={0}>
       <MetricsGallery />
-      <View style={{ paddingHorizontal: 8, paddingBottom: 8 }}>
+      <View style={{ paddingHorizontal: 8 }}>
         <Button label="Create record" onPress={handleCreateRecord} />
       </View>
     </Container>

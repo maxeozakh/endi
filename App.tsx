@@ -1,8 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { SafeAreaView } from 'react-native'
 import Toast from 'react-native-toast-message'
 
 import { NavigationBar } from './src/features/NavigationBar/NavigationBar'
+import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
 import { MetricData } from './src/pages/MetricData'
 import { TrackMetrics } from './src/pages/TrackMetrics'
@@ -14,7 +16,7 @@ import { toastConfig } from './src/shared/toastConfig'
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>()
   return (
-    <>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       <NavigationContainer
         theme={{
           dark: true,
@@ -50,10 +52,15 @@ export default function App() {
               headerTitle: props.route.params.metricName,
             })}
           />
+          <Stack.Screen
+            options={{ presentation: 'modal' }}
+            name={Routes.ADD_NEW_TAGS}
+            component={AddNewTags}
+          />
         </Stack.Navigator>
         <NavigationBar />
       </NavigationContainer>
       <Toast config={toastConfig} topOffset={60} position="top" />
-    </>
+    </SafeAreaView>
   )
 }
