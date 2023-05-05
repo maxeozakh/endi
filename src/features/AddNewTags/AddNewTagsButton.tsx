@@ -2,8 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
-import { Routes } from '../../shared/constants'
-import { navigationProps } from '../../shared/interfaces'
+import { navigationProps, Routes } from '../../shared/interfaces'
 import { COLORS } from '../../shared/ui/constants'
 
 interface AddNewTagsButtonProps {}

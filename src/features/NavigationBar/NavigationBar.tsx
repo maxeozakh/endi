@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 
 import { NavigationButton } from '../../entities/NavigationButton/NavigationButton'
-import { Routes } from '../../shared/constants'
+import { Routes } from '../../shared/interfaces'
 import { COLORS } from '../../shared/ui/constants'
 
 export const NavigationBar = () => {

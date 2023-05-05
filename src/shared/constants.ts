@@ -52,13 +52,3 @@ export const ESTIMATE_MAP = {
   4: { label: 'good', emoji: '😊' },
   5: { label: 'great', emoji: '🤩' },
 }
-
-export enum Routes {
-  DASHBOARD = 'Dashboard',
-  SETTINGS = 'Settings',
-  TRACK_TAGS = 'Track tags',
-  TRACK_METRICS = 'Track metrics',
-  INITIAL = 'Dashboard',
-  METRIC_DATA = 'Metric data',
-  ADD_NEW_TAGS = 'Add new tags',
-}

@@ -9,8 +9,7 @@ import { Dashboard } from './src/pages/Dashboard'
 import { MetricData } from './src/pages/MetricData'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
-import { Routes } from './src/shared/constants'
-import { RootStackParamList } from './src/shared/interfaces'
+import { RootStackParamList, Routes } from './src/shared/interfaces'
 import { toastConfig } from './src/shared/toastConfig'
 
 export default function App() {

@@ -1,5 +1,3 @@
-import { Routes } from './constants'
-
 export type navigationProps = {
   navigate: (screen: string, params?: unknown) => void
   goBack: () => void
@@ -19,4 +17,14 @@ export type RootStackParamList = {
   [Routes.TRACK_TAGS]: undefined
   [Routes.TRACK_METRICS]: undefined
   [Routes.ADD_NEW_TAGS]: undefined
+}
+
+export enum Routes {
+  DASHBOARD = 'Dashboard',
+  SETTINGS = 'Settings',
+  TRACK_TAGS = 'Track tags',
+  TRACK_METRICS = 'Track metrics',
+  INITIAL = 'Dashboard',
+  METRIC_DATA = 'Metric data',
+  ADD_NEW_TAGS = 'Add new tags',
 }

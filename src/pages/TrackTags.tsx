@@ -6,8 +6,7 @@ import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
 import { AddNewTagsButton } from '../features/AddNewTags/AddNewTagsButton'
 import { TagsList } from '../features/TagsList/TagsList'
-import { Routes } from '../shared/constants'
-import { navigationProps } from '../shared/interfaces'
+import { navigationProps, Routes } from '../shared/interfaces'
 
 export const TrackTags = () => {
   const navigation = useNavigation<navigationProps>()

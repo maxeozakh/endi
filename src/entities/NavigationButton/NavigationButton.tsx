@@ -4,8 +4,7 @@ import { Pressable, StyleSheet, View } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { NAVIGATION_ICONS_MAP } from './icons'
-import { Routes } from '../../shared/constants'
-import { navigationProps } from '../../shared/interfaces'
+import { navigationProps, Routes } from '../../shared/interfaces'
 import { ANIMATION_CONFIG, COLORS } from '../../shared/ui/constants'
 
 interface NavigationButtonProps {
