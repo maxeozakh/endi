@@ -1,6 +1,6 @@
 import { useNavigation, useNavigationState } from '@react-navigation/native'
 import React, { useEffect } from 'react'
-import { Pressable, StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableHighlight, View } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { NAVIGATION_ICONS_MAP } from './icons'
@@ -54,11 +54,11 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
   })
 
   return (
-    <Pressable onPress={isDisabled ? null : handleOnPress}>
+    <TouchableHighlight onPress={isDisabled ? null : handleOnPress}>
       <View style={styles.iconWrapper}>
         <Animated.View style={[animatedOpacityStyle]}>{icon}</Animated.View>
       </View>
-    </Pressable>
+    </TouchableHighlight>
   )
 }
 
