@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 import { DEFAULT_METRICS, DEFAULT_TAGS } from '../constants'
 
@@ -17,6 +18,7 @@ type State = {
 type Actions = {
   addUserTags: (tags: string[]) => void
   addUserMetrics: (metrics: UserMetric[]) => void
+  resetUserEntities: () => void
 }
 
 export const useUserEntitiesStore = create<State & Actions>()(
@@ -25,11 +27,14 @@ export const useUserEntitiesStore = create<State & Actions>()(
       (set) => ({
         tags: [...DEFAULT_TAGS],
         metrics: [...DEFAULT_METRICS],
-        addUserTags: (tags) => set((state) => ({ tags: [...state.tags, ...tags] })),
+
+        addUserTags: (tags) => set((state) => ({ tags: [...tags, ...state.tags] })),
         addUserMetrics: (metrics) => set((state) => ({ metrics: [...state.metrics, ...metrics] })),
+        resetUserEntities: () => set({ tags: [...DEFAULT_TAGS], metrics: [...DEFAULT_METRICS] }),
       }),
       {
-        name: 'user-entities-store',
+        name: 'records-store',
+        storage: createJSONStorage(() => AsyncStorage),
       }
     )
   )
