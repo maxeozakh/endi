@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native'
 
 import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
+import { AddNewTagsButton } from '../features/AddNewTags/AddNewTagsButton'
 import { TagsList } from '../features/TagsList/TagsList'
 import { Routes } from '../shared/constants'
 import { navigationProps } from '../shared/interfaces'
@@ -14,7 +15,7 @@ export const TrackTags = () => {
     <Container flexWrap="nowrap">
       <View style={styles.container}>
         <TagsList />
-        <Button onPress={() => navigation.navigate(Routes.ADD_NEW_TAGS)}>+++</Button>
+        <AddNewTagsButton />
       </View>
       <Button label="Track metrics" onPress={() => navigation.push(Routes.TRACK_METRICS)} />
     </Container>
@@ -26,5 +27,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: 120,
+  },
+  addNewTagButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: 'red',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addNewTagButtonText: {
+    fontSize: 34,
+    color: 'white',
   },
 })
