@@ -9,7 +9,7 @@ export const NavigationBar = () => {
     <View style={styles.container}>
       <NavigationButton route={Routes.DASHBOARD} />
       <NavigationButton route={Routes.TRACK_TAGS} />
-      <NavigationButton isDisabled={true} route={Routes.SETTINGS} />
+      <NavigationButton route={Routes.SETTINGS} />
     </View>
   )
 }
