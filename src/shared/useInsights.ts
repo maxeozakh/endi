@@ -75,5 +75,24 @@ export const useInsights = (period: Period = Period.WEEK) => {
     return correlationsWithoutZero
   }
 
-  return { getCorrelationsByMetric }
+  const getAverageMetricValue = (metricName: string) => {
+    const recordsByPeriod =
+      period === Period.WEEK
+        ? getLastWeekRecordsByMetric(metricName)
+        : getRecordsWithMetric(metricName)
+
+    if (!recordsByPeriod.length) {
+      return null
+    }
+
+    const metricTotalValue = recordsByPeriod.reduce((acc, record) => {
+      return acc + record.metrics[metricName]
+    }, 0)
+
+    const metricAvg = metricTotalValue / recordsByPeriod.length
+
+    return metricAvg
+  }
+
+  return { getCorrelationsByMetric, getAverageMetricValue }
 }
