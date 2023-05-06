@@ -21,7 +21,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.GRAY_DARK,
     borderRadius: 8,
-    padding: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
     marginBottom: 2,
   },
   content: {

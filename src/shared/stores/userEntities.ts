@@ -29,11 +29,11 @@ export const useUserEntitiesStore = create<State & Actions>()(
         metrics: [...DEFAULT_METRICS],
 
         addUserTags: (tags) => set((state) => ({ tags: [...tags, ...state.tags] })),
-        addUserMetrics: (metrics) => set((state) => ({ metrics: [...state.metrics, ...metrics] })),
+        addUserMetrics: (metrics) => set((state) => ({ metrics: [...metrics, ...state.metrics] })),
         resetUserEntities: () => set({ tags: [...DEFAULT_TAGS], metrics: [...DEFAULT_METRICS] }),
       }),
       {
-        name: 'records-store',
+        name: 'user-entities-store',
         storage: createJSONStorage(() => AsyncStorage),
       }
     )

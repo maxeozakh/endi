@@ -1,27 +1,24 @@
 import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
+import { useMetricStat } from '../../features/MetricsStats/useMetricsStat'
 import { ESTIMATE_MAP } from '../../shared/constants'
-import { MetricValue } from '../../shared/stores/records'
 import { COLORS } from '../../shared/ui/constants'
 
 interface MetricStatsCardProps {
   name: string
   color: string
-  value: MetricValue
-  lastEditLabel: string
-  onPressCallback: () => void
+  onPressCallback: (metricName: string) => void
 }
 
 export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
   name,
   color,
-  value,
-  lastEditLabel,
   onPressCallback,
 }) => {
+  const { metricValue: value, dateLabel: lastEditLabel } = useMetricStat(name)
   return (
-    <Pressable onPress={onPressCallback} style={styles.container}>
+    <Pressable onPress={() => onPressCallback(name)} style={styles.container}>
       <View style={styles.leftColumn}>
         <View style={[styles.emojiContainer, { backgroundColor: color }]}>
           <Text style={[styles.text, styles.emojiText]}>{ESTIMATE_MAP[value].emoji}</Text>

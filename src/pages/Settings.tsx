@@ -8,7 +8,7 @@ export const Settings: React.FC = () => {
   const navigation = useNavigator3000()
   return (
     <View>
-      <ListItem onPress={() => navigation.navigate(Routes.MANAGE_METRICS)} label="Manage metrics" />
+      <ListItem onPress={() => navigation.push(Routes.MANAGE_METRICS)} label="Manage metrics" />
       <ListItem label="Manage tags" />
     </View>
   )

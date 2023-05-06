@@ -1,17 +1,21 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { Button } from '../../entities/Button/Button'
 import { ListItem } from '../../entities/ListItem/ListItem'
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
 import { getUserMetrics } from '../../shared/stores/userEntities'
+import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
 
 export const ManageMetrics: React.FC = () => {
   const metrics = getUserMetrics()
+  const navigation = useNavigator3000()
 
   return (
-    <View>
-      <Button stylesProp={styles.newMetricButton} onPress={() => {}}>
+    <ScrollView>
+      <Button
+        stylesProp={styles.newMetricButton}
+        onPress={() => navigation.push(Routes.ADD_NEW_METRIC)}>
         + Add new metric
       </Button>
       {metrics.map((metric) => {
@@ -24,7 +28,7 @@ export const ManageMetrics: React.FC = () => {
           </ListItem>
         )
       })}
-    </View>
+    </ScrollView>
   )
 }
 
@@ -39,8 +43,8 @@ const styles = StyleSheet.create({
   },
   colorIcon: {
     marginRight: 8,
-    width: 16,
-    height: 16,
+    width: 14,
+    height: 14,
     display: 'flex',
     borderRadius: 2,
   },

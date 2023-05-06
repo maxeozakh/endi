@@ -56,13 +56,7 @@ export default function App() {
               headerBackVisible: false,
             }}
           />
-          <Stack.Screen
-            name={Routes.MANAGE_METRICS}
-            component={ManageMetrics}
-            options={{
-              headerBackVisible: false,
-            }}
-          />
+          <Stack.Screen name={Routes.MANAGE_METRICS} component={ManageMetrics} />
           <Stack.Screen name={Routes.ADD_NEW_METRIC} component={AddNewMetric} />
         </Stack.Navigator>
         <NavigationBar />
