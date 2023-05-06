@@ -16,7 +16,7 @@ export const TrackTags = () => {
         <TagsList />
         <AddNewTagsButton />
       </View>
-      <Button label="Track metrics" onPress={() => navigation.push(Routes.TRACK_METRICS)} />
+      <Button label="Estimate metrics" onPress={() => navigation.push(Routes.TRACK_METRICS)} />
     </Container>
   )
 }
