@@ -13,6 +13,16 @@ export const useCreateRecord = () => {
   const { tags, metrics } = getRecordedData()
 
   const handleCreateRecord = () => {
+    if (Object.keys(metrics).length === 0) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
+
+      return Toast.show({
+        type: 'info',
+        text1: '',
+        text2: 'estimate at least one metric',
+      })
+    }
+
     addRecord({
       tags,
       metrics,
@@ -21,13 +31,13 @@ export const useCreateRecord = () => {
 
     navigation.navigate('Dashboard')
 
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
+
     Toast.show({
       type: 'info',
       text1: '',
       text2: 'record was created!',
     })
-
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
     resetCreationState()
   }
