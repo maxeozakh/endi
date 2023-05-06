@@ -1,4 +1,5 @@
 import { useRoute } from '@react-navigation/native'
+import * as Haptics from 'expo-haptics'
 import React, { useCallback, useState } from 'react'
 import { View, TextInput, StyleSheet, TouchableHighlight, Switch } from 'react-native'
 
@@ -28,8 +29,14 @@ export const EditMetric: React.FC = () => {
       id: metricId,
       isActive,
     })
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
     navigation.navigate(Routes.MANAGE_METRICS)
   }, [metricName, selectedColor, isActive])
+
+  const handleChooseColor = (color: string) => {
+    setSelectedColor(color)
+    Haptics.selectionAsync()
+  }
 
   const colors = [
     COLORS.YELLOW_MEDIUM,
@@ -58,7 +65,7 @@ export const EditMetric: React.FC = () => {
               },
             ]}
             key={color}
-            onPress={() => setSelectedColor(color)}>
+            onPress={() => handleChooseColor(color)}>
             <View />
           </TouchableHighlight>
         ))}
