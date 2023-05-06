@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
 import { useMetricStat } from '../../features/MetricsStats/useMetricsStat'
 import { ESTIMATE_MAP } from '../../shared/constants'
@@ -18,20 +18,22 @@ export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
 }) => {
   const { metricValue: value, dateLabel: lastEditLabel } = useMetricStat(name)
   return (
-    <Pressable onPress={() => onPressCallback(name)} style={styles.container}>
-      <View style={styles.leftColumn}>
-        <View style={[styles.emojiContainer, { backgroundColor: color }]}>
-          <Text style={[styles.text, styles.emojiText]}>{ESTIMATE_MAP[value].emoji}</Text>
+    <TouchableHighlight onPress={() => onPressCallback(name)} style={styles.container}>
+      <>
+        <View style={styles.leftColumn}>
+          <View style={[styles.emojiContainer, { backgroundColor: color }]}>
+            <Text style={[styles.text, styles.emojiText]}>{ESTIMATE_MAP[value].emoji}</Text>
+          </View>
+          <View>
+            <Text style={styles.text}>{name}</Text>
+            <Text style={[styles.text, styles.estimateValueText]}>{ESTIMATE_MAP[value].label}</Text>
+          </View>
         </View>
         <View>
-          <Text style={styles.text}>{name}</Text>
-          <Text style={[styles.text, styles.estimateValueText]}>{ESTIMATE_MAP[value].label}</Text>
+          <Text style={[styles.text, styles.lastEditText]}>{lastEditLabel}</Text>
         </View>
-      </View>
-      <View>
-        <Text style={[styles.text, styles.lastEditText]}>{lastEditLabel}</Text>
-      </View>
-    </Pressable>
+      </>
+    </TouchableHighlight>
   )
 }
 
