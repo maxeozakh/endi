@@ -27,7 +27,7 @@ export const AddNewMetric: React.FC = () => {
     COLORS.PINK_LIGHT,
     COLORS.BLUE_MEDIUM,
     COLORS.RED_MEDIUM,
-    COLORS.VIOLET_MEDIUM,
+    COLORS.VIOLET_LIGHT,
     COLORS.GREEN_MEDIUM,
   ]
 
