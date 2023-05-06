@@ -11,13 +11,19 @@ export interface UserMetric {
   isActive: boolean
 }
 
+export interface UserTag {
+  name: string
+  id: string
+  isActive: boolean
+}
+
 type State = {
-  tags: string[]
+  tags: UserTag[]
   metrics: UserMetric[]
 }
 
 type Actions = {
-  addUserTags: (tags: string[]) => void
+  addUserTags: (tags: UserTag[]) => void
   addUserMetric: (metric: UserMetric) => void
   deleteUserMetric: (id: string) => void
   updateUserMetric: (id: string, metric: UserMetric) => void
@@ -48,6 +54,8 @@ export const useUserEntitiesStore = create<State & Actions>()(
 )
 
 export const getUserTags = () => useUserEntitiesStore((state) => state.tags)
+export const getUserTagNames = () =>
+  useUserEntitiesStore((state) => state.tags).map((tag) => tag.name)
 export const getUserMetrics = () => useUserEntitiesStore((state) => state.metrics)
 export const getActiveUserMetrics = () =>
   useUserEntitiesStore((state) => state.metrics).filter((metric) => metric.isActive)

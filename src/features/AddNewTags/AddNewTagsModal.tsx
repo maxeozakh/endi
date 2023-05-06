@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
+import uuid from 'react-native-uuid'
 
 import { Button } from '../../entities/Button/Button'
 import { Container } from '../../entities/Container/Container'
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
 import { useCreateRecordStore } from '../../shared/stores/createRecord'
-import { getUserTags, useUserEntitiesStore } from '../../shared/stores/userEntities'
+import { getUserTagNames, useUserEntitiesStore } from '../../shared/stores/userEntities'
 import { COLORS } from '../../shared/ui/constants'
 import { useNavigator3000 } from '../../shared/useNavigator3000'
 
@@ -15,13 +16,15 @@ export const AddNewTagsModal: React.FC = () => {
   const { addTagsToTheRecord } = useCreateRecordStore()
   const navigation = useNavigator3000()
 
-  const userTags = getUserTags()
+  const userTagNames = getUserTagNames()
 
   const getUniqueTagsToSave = () => {
-    const newTags = tags.split(',').map((tag) => tag.trim())
+    const newTags = tags.split(',').map((tag) => {
+      return { name: tag.trim(), id: uuid.v4() as string, isActive: true }
+    })
     const uniqueNewTags = newTags
-      .filter((tag) => !userTags.includes(tag))
-      .filter((tag) => tag !== '')
+      .filter((tag) => !userTagNames.includes(tag.name))
+      .filter((tag) => tag.name !== '')
 
     return uniqueNewTags
   }
@@ -29,7 +32,7 @@ export const AddNewTagsModal: React.FC = () => {
   const handleSaveTags = () => {
     const tags = getUniqueTagsToSave()
     addUserTags(tags)
-    addTagsToTheRecord(tags)
+    addTagsToTheRecord(tags.map((tag) => tag.name))
     navigation.goBack()
   }
 

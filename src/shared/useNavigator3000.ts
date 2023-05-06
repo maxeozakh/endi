@@ -32,6 +32,8 @@ export enum Routes {
   ADD_NEW_METRIC = 'Add new metric',
   MANAGE_METRICS = 'Manage metrics',
   EDIT_METRIC = 'Edit metric',
+  MANAGE_TAGS = 'Manage tags',
+  EDIT_TAG = 'Edit tag',
 }
 
 export const useNavigator3000 = () => {

@@ -8,21 +8,21 @@ import { ANIMATION_CONFIG, COLORS } from '../../shared/ui/constants'
 
 interface TagProps {
   name: string
-  isActive: boolean
+  isChosed: boolean
 }
-export const Tag: React.FC<TagProps> = ({ name, isActive }) => {
+export const Tag: React.FC<TagProps> = ({ name, isChosed }) => {
   const { addTagsToTheRecord, removeTagFromTheRecord } = useCreateRecordStore()
 
   const handleOnPress = () => {
-    if (isActive) {
+    if (isChosed) {
       removeTagFromTheRecord(name)
     } else addTagsToTheRecord([name])
 
     Haptics.selectionAsync()
   }
 
-  const backgroundColor = isActive ? '#fff' : COLORS.GRAY_DARK
-  const color = isActive ? '#000' : '#fff'
+  const backgroundColor = isChosed ? '#fff' : COLORS.GRAY_DARK
+  const color = isChosed ? '#000' : '#fff'
   const animatedStyles = useAnimatedStyle(() => {
     return {
       backgroundColor: withTiming(backgroundColor, ANIMATION_CONFIG),
