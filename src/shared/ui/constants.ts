@@ -12,3 +12,15 @@ export const ANIMATION_CONFIG = {
   duration: 150,
   easing: Easing.bezier(0.25, 0.1, 0.25, 1),
 }
+
+export const UI_THEME = {
+  dark: true,
+  colors: {
+    primary: 'white',
+    background: '#000',
+    card: '#000',
+    text: 'white',
+    border: '#f3f3f3',
+    notification: '#000',
+  },
+}

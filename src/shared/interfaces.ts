@@ -17,14 +17,16 @@ export type RootStackParamList = {
   [Routes.TRACK_TAGS]: undefined
   [Routes.TRACK_METRICS]: undefined
   [Routes.ADD_NEW_TAGS]: undefined
+  [Routes.MANAGE_METRICS]: undefined
 }
 
 export enum Routes {
+  INITIAL = 'Dashboard',
   DASHBOARD = 'Dashboard',
   SETTINGS = 'Settings',
   TRACK_TAGS = 'Track tags',
   TRACK_METRICS = 'Track metrics',
-  INITIAL = 'Dashboard',
   METRIC_DATA = 'Metric data',
   ADD_NEW_TAGS = 'Add new tags',
+  MANAGE_METRICS = 'Manage metrics',
 }
