@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch } from 'react-native'
+import { Pressable, StyleSheet, Switch, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
 import { Button } from '../../entities/Button/Button'
@@ -20,12 +20,48 @@ export const ManageTags: React.FC = () => {
     })
   }
 
+  const [sortedBy, setSortedBy] = React.useState<'name' | 'isActive'>('name')
+  const sortedTags = React.useMemo(() => {
+    return tags.sort((a, b) => {
+      if (sortedBy === 'name') {
+        return a.name.localeCompare(b.name)
+      } else if (sortedBy === 'isActive') {
+        if (a.isActive === b.isActive) return 0
+        if (a.isActive) return -1
+        return 1
+      } else return 0
+    })
+  }, [tags, sortedBy])
+
   return (
     <ScrollView>
       <Button stylesProp={{ marginBottom: 2 }} onPress={() => navigation.push(Routes.ADD_NEW_TAGS)}>
-        + Add new tags
+        + add new tags
       </Button>
-      {tags.map((tag) => (
+
+      <View style={styles.sortContainer}>
+        <TextTheme>sort by: </TextTheme>
+        <View style={styles.sortOption}>
+          <Pressable
+            style={{
+              marginHorizontal: 24,
+              borderBottomWidth: sortedBy === 'name' ? 1 : 0,
+              borderBottomColor: 'white',
+            }}
+            onPress={() => setSortedBy('name')}>
+            <TextTheme>name</TextTheme>
+          </Pressable>
+          <Pressable
+            onPress={() => setSortedBy('isActive')}
+            style={{
+              borderBottomWidth: sortedBy === 'isActive' ? 1 : 0,
+              borderBottomColor: 'white',
+            }}>
+            <TextTheme>active</TextTheme>
+          </Pressable>
+        </View>
+      </View>
+      {sortedTags.map((tag) => (
         <ListItem key={tag.id}>
           <TextTheme>{tag.name}</TextTheme>
           <Switch onChange={() => handleChangeSwitch(tag.id)} value={tag.isActive} />
@@ -34,3 +70,14 @@ export const ManageTags: React.FC = () => {
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  sortContainer: {
+    marginVertical: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  sortOption: {
+    flexDirection: 'row',
+  },
+})

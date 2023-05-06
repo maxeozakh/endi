@@ -3,13 +3,13 @@ import { ScrollView, StyleSheet } from 'react-native'
 
 import { MetricStatsCard } from '../../entities/MetricStatsCard/MetricStatsCard'
 import { getActiveUserMetrics } from '../../shared/stores/userEntities'
-import { useNavigator3000 } from '../../shared/useNavigator3000'
+import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
 
 export const MetricsStats: React.FC = () => {
   const metrics = getActiveUserMetrics()
   const navigation = useNavigator3000()
   const pressCallback = useCallback(
-    (metricName: string) => navigation.navigate('Metric data', { metricName }),
+    (metricName: string) => navigation.navigate(Routes.METRIC_DATA, { metricName }),
     []
   )
 

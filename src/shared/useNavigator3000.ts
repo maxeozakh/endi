@@ -24,19 +24,19 @@ export type RootStackParamList = {
 }
 
 export enum Routes {
-  INITIAL = 'Dashboard',
-  DASHBOARD = 'Dashboard',
-  SETTINGS = 'Settings',
-  TRACK_TAGS = 'Track tags',
-  TRACK_METRICS = 'Track metrics',
-  METRIC_DATA = 'Metric data',
-  ADD_NEW_TAGS_MODAL = 'Add new tags modal',
-  ADD_NEW_TAGS = 'Add new tags',
-  ADD_NEW_METRIC = 'Add new metric',
-  MANAGE_METRICS = 'Manage metrics',
-  EDIT_METRIC = 'Edit metric',
-  MANAGE_TAGS = 'Manage tags',
-  EDIT_TAG = 'Edit tag',
+  INITIAL = 'dashboard',
+  DASHBOARD = 'dashboard',
+  SETTINGS = 'settings',
+  TRACK_TAGS = 'track tags',
+  TRACK_METRICS = 'track metrics',
+  METRIC_DATA = 'metric data',
+  ADD_NEW_TAGS_MODAL = 'add new tags modal',
+  ADD_NEW_TAGS = 'add new tags',
+  ADD_NEW_METRIC = 'add new metric',
+  MANAGE_METRICS = 'manage metrics',
+  EDIT_METRIC = 'edit metric',
+  MANAGE_TAGS = 'manage tags',
+  EDIT_TAG = 'edit tag',
 }
 
 export const useNavigator3000 = () => {

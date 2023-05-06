@@ -6,7 +6,7 @@ export const useMetricStat = (metricName: string) => {
   if (!lastRecordedMetric) {
     return {
       metricValue: 0 as MetricValue,
-      dateLabel: 'No data',
+      dateLabel: 'no data',
     }
   }
 
@@ -24,9 +24,9 @@ export const getLastEditLabel = (date: string): string => {
   let dateLabel
 
   if (isDateIsToday(date)) {
-    dateLabel = 'Today'
+    dateLabel = 'today'
   } else if (isDateIsYesterday(date)) {
-    dateLabel = 'Yesterday'
+    dateLabel = 'yesterday'
   } else {
     dateLabel = new Date(date).toLocaleDateString()
   }

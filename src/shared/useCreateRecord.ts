@@ -3,7 +3,7 @@ import Toast from 'react-native-toast-message'
 
 import { useCreateRecordStore, getRecordedData } from './stores/createRecord'
 import { useRecordsStore } from './stores/records'
-import { useNavigator3000 } from './useNavigator3000'
+import { Routes, useNavigator3000 } from './useNavigator3000'
 
 export const useCreateRecord = () => {
   const navigation = useNavigator3000()
@@ -28,7 +28,7 @@ export const useCreateRecord = () => {
       date: new Date().toString(),
     })
 
-    navigation.navigate('Dashboard')
+    navigation.navigate(Routes.DASHBOARD)
 
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 

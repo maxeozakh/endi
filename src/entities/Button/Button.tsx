@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableHighlight } from 'react-native'
+import { StyleSheet, TouchableHighlight } from 'react-native'
 
 import { COLORS } from '../../shared/ui/constants'
+import { TextTheme } from '../TextTheme/TextTheme'
 
 interface ButtonProps {
   label?: string
@@ -30,18 +31,16 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableHighlight style={styles.container} {...touchProps}>
-      <Text style={[styles.text, { fontSize }]}>{children || label}</Text>
+      <TextTheme stylesProp={styles.text}>{children || label}</TextTheme>
     </TouchableHighlight>
   )
 }
 
 const styles = StyleSheet.create({
   container: {},
-
   text: {
     fontSize: 16,
     paddingVertical: 14,
-    color: '#fff',
   },
   btnNormal: {
     backgroundColor: COLORS.GRAY_DARK,

@@ -16,7 +16,7 @@ export const ManageMetrics: React.FC = () => {
       <Button
         stylesProp={styles.newMetricButton}
         onPress={() => navigation.push(Routes.ADD_NEW_METRIC)}>
-        + Add new metric
+        + add new metric
       </Button>
       {metrics.map((metric) => {
         return (

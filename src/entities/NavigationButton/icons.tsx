@@ -2,19 +2,19 @@ import Svg, { Circle, Path } from 'react-native-svg'
 const ICON_SIZE = 20
 
 export const NAVIGATION_ICONS_MAP = {
-  Dashboard: (
+  dashboard: (
     <Svg width={ICON_SIZE} height={ICON_SIZE} viewBox="0 0 20 20" fill="none">
       <Circle cx="13" cy="7" r="6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
       <Circle cx="7" cy="13" r="6" stroke="white" stroke-width="1.5" stroke-linecap="round" />
     </Svg>
   ),
-  'Track tags': (
+  'track tags': (
     <Svg width={ICON_SIZE} height={ICON_SIZE} viewBox="0 0 14 14" fill="none">
       <Path d="M1 7H13" stroke="white" stroke-width="1.5" stroke-linecap="round" />
       <Path d="M7 13L7 1" stroke="white" stroke-width="1.5" stroke-linecap="round" />
     </Svg>
   ),
-  Settings: (
+  settings: (
     <Svg width={ICON_SIZE} height={ICON_SIZE} viewBox="0 0 18 18" fill="none">
       <Circle cx="9" cy="9" r="3" stroke="white" stroke-width="1.5" stroke-linecap="round" />
       <Path

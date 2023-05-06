@@ -32,12 +32,12 @@ export default function App() {
           <Stack.Screen
             name={Routes.TRACK_TAGS}
             component={TrackTags}
-            options={{ headerBackVisible: false, headerTitle: 'Pick tags' }}
+            options={{ headerBackVisible: false, headerTitle: 'pick tags' }}
           />
           <Stack.Screen
             name={Routes.TRACK_METRICS}
             component={TrackMetrics}
-            options={{ headerShown: true, headerTitle: 'Estimate metrics' }}
+            options={{ headerShown: true, headerTitle: 'estimate metrics' }}
           />
           <Stack.Screen
             name={Routes.METRIC_DATA}
@@ -48,7 +48,7 @@ export default function App() {
           />
           <Stack.Screen name={Routes.ADD_NEW_TAGS} component={AddNewTags} />
           <Stack.Screen
-            options={{ presentation: 'modal', headerTitle: 'Add new tags' }}
+            options={{ presentation: 'modal', headerTitle: 'add new tags' }}
             name={Routes.ADD_NEW_TAGS_MODAL}
             component={AddNewTags}
           />
@@ -56,6 +56,7 @@ export default function App() {
             name={Routes.SETTINGS}
             component={Settings}
             options={{
+              headerTitle: 'settings',
               headerBackVisible: false,
             }}
           />
