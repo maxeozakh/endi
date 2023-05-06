@@ -3,3 +3,8 @@ export type RouteProps = {
   key: string
   name: string
 }
+
+export enum Period {
+  WEEK = 'week',
+  MONTH = 'month',
+}

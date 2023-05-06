@@ -1,10 +1,6 @@
+import { Period } from './interfaces'
 import { getLastWeekRecordsByMetric, getRecordsWithMetric } from './stores/records'
 import { getActiveUserTags } from './stores/userEntities'
-
-enum Period {
-  WEEK = 'week',
-  MONTH = 'month',
-}
 
 export const useInsights = (period: Period = Period.WEEK) => {
   const getCorrelationsByMetric = (metricName: string) => {
@@ -82,14 +78,14 @@ export const useInsights = (period: Period = Period.WEEK) => {
         : getRecordsWithMetric(metricName)
 
     if (!recordsByPeriod.length) {
-      return null
+      return 0
     }
 
     const metricTotalValue = recordsByPeriod.reduce((acc, record) => {
       return acc + record.metrics[metricName]
     }, 0)
 
-    const metricAvg = metricTotalValue / recordsByPeriod.length
+    const metricAvg = Math.round(metricTotalValue / recordsByPeriod.length)
 
     return metricAvg
   }

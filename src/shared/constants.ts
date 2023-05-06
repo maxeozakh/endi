@@ -52,3 +52,18 @@ export const ESTIMATE_MAP = {
   4: { label: 'good', emoji: '😊' },
   5: { label: 'great', emoji: '🤩' },
 }
+
+export const MONTHS = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
