@@ -8,6 +8,7 @@ export interface UserMetric {
   name: string
   color: string
   id: string
+  isActive: boolean
 }
 
 type State = {
@@ -17,7 +18,9 @@ type State = {
 
 type Actions = {
   addUserTags: (tags: string[]) => void
-  addUserMetrics: (metrics: UserMetric[]) => void
+  addUserMetric: (metric: UserMetric) => void
+  deleteUserMetric: (id: string) => void
+  updateUserMetric: (id: string, metric: UserMetric) => void
   resetUserEntities: () => void
 }
 
@@ -29,8 +32,12 @@ export const useUserEntitiesStore = create<State & Actions>()(
         metrics: [...DEFAULT_METRICS],
 
         addUserTags: (tags) => set((state) => ({ tags: [...tags, ...state.tags] })),
-        addUserMetrics: (metrics) => set((state) => ({ metrics: [...metrics, ...state.metrics] })),
+        addUserMetric: (metric) => set((state) => ({ metrics: [metric, ...state.metrics] })),
         resetUserEntities: () => set({ tags: [...DEFAULT_TAGS], metrics: [...DEFAULT_METRICS] }),
+        deleteUserMetric: (id) =>
+          set((state) => ({ metrics: state.metrics.filter((metric) => metric.id !== id) })),
+        updateUserMetric: (id, metric) =>
+          set((state) => ({ metrics: state.metrics.map((m) => (m.id === id ? metric : m)) })),
       }),
       {
         name: 'user-entities-store',
@@ -42,5 +49,10 @@ export const useUserEntitiesStore = create<State & Actions>()(
 
 export const getUserTags = () => useUserEntitiesStore((state) => state.tags)
 export const getUserMetrics = () => useUserEntitiesStore((state) => state.metrics)
+export const getActiveUserMetrics = () =>
+  useUserEntitiesStore((state) => state.metrics).filter((metric) => metric.isActive)
 export const getUserMetricByName = (name: string) =>
   useUserEntitiesStore((state) => state.metrics.find((metric) => metric.name === name))
+
+export const getUserMetricById = (id: string) =>
+  useUserEntitiesStore((state) => state.metrics.find((metric) => metric.id === id))

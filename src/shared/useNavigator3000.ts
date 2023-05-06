@@ -4,7 +4,7 @@ export type navigationProps = {
   navigate: (screen: string, params?: unknown) => void
   goBack: () => void
   reset: (index: number, routeNames: string[]) => void
-  push: (screen: string) => void
+  push: (screen: string, params?: unknown) => void
   getCurrentRoute: () => { name: string }
 }
 export type RootStackParamList = {
@@ -18,6 +18,7 @@ export type RootStackParamList = {
   [Routes.ADD_NEW_TAGS]: undefined
   [Routes.MANAGE_METRICS]: undefined
   [Routes.ADD_NEW_METRIC]: undefined
+  [Routes.EDIT_METRIC]: undefined
 }
 
 export enum Routes {
@@ -30,6 +31,7 @@ export enum Routes {
   ADD_NEW_TAGS = 'Add new tags',
   ADD_NEW_METRIC = 'Add new metric',
   MANAGE_METRICS = 'Manage metrics',
+  EDIT_METRIC = 'Edit metric',
 }
 
 export const useNavigator3000 = () => {

@@ -39,9 +39,9 @@ const POSITIVE_TAG_NAMES = [
 export const DEFAULT_TAGS = [...NEGATIVE_TAG_NAMES, ...POSITIVE_TAG_NAMES]
 
 export const DEFAULT_METRICS = [
-  { name: 'energy', color: '#F5DB5E', id: '1' },
-  { name: 'focus', color: '#E7BDCA', id: '2' },
-  { name: 'fun', color: '#5A86E9', id: '3' },
+  { name: 'energy', color: '#F5DB5E', id: '1', isActive: true },
+  { name: 'focus', color: '#E7BDCA', id: '2', isActive: true },
+  { name: 'fun', color: '#5A86E9', id: '3', isActive: true },
 ]
 
 export const ESTIMATE_MAP = {

@@ -7,6 +7,7 @@ import { NavigationBar } from './src/features/NavigationBar/NavigationBar'
 import { AddNewMetric } from './src/pages/AddNewMetric'
 import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
+import { EditMetric } from './src/pages/EditMetric'
 import { ManageMetrics } from './src/pages/ManageMetrics'
 import { MetricData } from './src/pages/MetricData'
 import { Settings } from './src/pages/Settings'
@@ -58,6 +59,7 @@ export default function App() {
           />
           <Stack.Screen name={Routes.MANAGE_METRICS} component={ManageMetrics} />
           <Stack.Screen name={Routes.ADD_NEW_METRIC} component={AddNewMetric} />
+          <Stack.Screen name={Routes.EDIT_METRIC} component={EditMetric} />
         </Stack.Navigator>
         <NavigationBar />
       </NavigationContainer>

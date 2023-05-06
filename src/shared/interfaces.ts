@@ -1,1 +1,5 @@
-export type RouteProps = { params: { metricName: string }; key: string; name: string }
+export type RouteProps = {
+  params: { metricName: string; metricId?: string }
+  key: string
+  name: string
+}

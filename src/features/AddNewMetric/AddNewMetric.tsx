@@ -3,22 +3,38 @@ import { View, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
 import uuid from 'react-native-uuid'
 
 import { Button } from '../../entities/Button/Button'
-import { useUserEntitiesStore } from '../../shared/stores/userEntities'
+import { getUserMetrics, useUserEntitiesStore } from '../../shared/stores/userEntities'
 import { COLORS } from '../../shared/ui/constants'
 import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 
 export const AddNewMetric: React.FC = () => {
   const [metricName, setMetricName] = React.useState('')
   const [selectedColor, setSelectedColor] = React.useState<string>(COLORS.YELLOW_MEDIUM)
   const navigation = useNavigator3000()
-  const { addUserMetrics } = useUserEntitiesStore()
+  const { addUserMetric } = useUserEntitiesStore()
+  const userMetrics = getUserMetrics()
 
   const handleSave = useCallback(() => {
     if (!metricName) {
       return
     }
 
-    addUserMetrics([{ name: metricName, color: selectedColor, id: uuid.v4() as string }])
+    if (userMetrics.find((metric) => metric.name === metricName)) {
+      Toast.show({
+        type: 'info',
+        text1: '',
+        text2: 'metric with this name already exists',
+      })
+      return
+    }
+
+    addUserMetric({
+      name: metricName,
+      color: selectedColor,
+      id: uuid.v4() as string,
+      isActive: true,
+    })
     navigation.navigate(Routes.MANAGE_METRICS)
   }, [metricName, selectedColor])
 

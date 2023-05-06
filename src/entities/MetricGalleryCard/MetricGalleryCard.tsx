@@ -4,13 +4,13 @@ import { StyleSheet, Text, View } from 'react-native'
 import { EstimateButton } from '../../entities/EstimateButton/EstimateButton'
 import { ESTIMATE_MAP } from '../../shared/constants'
 import { getRecordedMetrics, useCreateRecordStore } from '../../shared/stores/createRecord'
-import { getUserMetrics } from '../../shared/stores/userEntities'
+import { getActiveUserMetrics } from '../../shared/stores/userEntities'
 
 interface Props {
   index: number
 }
 export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
-  const metrics = getUserMetrics()
+  const metrics = getActiveUserMetrics()
   const currentItem = metrics[index]
   const { name, color } = currentItem
 

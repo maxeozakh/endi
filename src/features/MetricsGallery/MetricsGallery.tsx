@@ -3,10 +3,10 @@ import { Dimensions } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel'
 
 import { MetricGalleryCard } from '../../entities/MetricGalleryCard/MetricGalleryCard'
-import { getUserMetrics } from '../../shared/stores/userEntities'
+import { getActiveUserMetrics } from '../../shared/stores/userEntities'
 
 export const MetricsGallery = () => {
-  const metrics = getUserMetrics()
+  const metrics = getActiveUserMetrics()
   const width = Dimensions.get('window').width
   const height = Dimensions.get('window').height
 

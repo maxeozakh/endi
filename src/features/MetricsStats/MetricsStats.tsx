@@ -2,11 +2,11 @@ import React, { useCallback } from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 
 import { MetricStatsCard } from '../../entities/MetricStatsCard/MetricStatsCard'
-import { getUserMetrics } from '../../shared/stores/userEntities'
+import { getActiveUserMetrics } from '../../shared/stores/userEntities'
 import { useNavigator3000 } from '../../shared/useNavigator3000'
 
 export const MetricsStats: React.FC = () => {
-  const metrics = getUserMetrics()
+  const metrics = getActiveUserMetrics()
   const navigation = useNavigator3000()
   const pressCallback = useCallback(
     (metricName: string) => navigation.navigate('Metric data', { metricName }),

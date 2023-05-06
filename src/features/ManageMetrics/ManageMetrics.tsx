@@ -20,7 +20,9 @@ export const ManageMetrics: React.FC = () => {
       </Button>
       {metrics.map((metric) => {
         return (
-          <ListItem key={metric.id}>
+          <ListItem
+            onPress={() => navigation.push(Routes.EDIT_METRIC, { metricId: metric.id })}
+            key={metric.id}>
             <View style={styles.container}>
               <View style={[styles.colorIcon, { backgroundColor: metric.color }]}></View>
               <TextTheme>{metric.name}</TextTheme>
