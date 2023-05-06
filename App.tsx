@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native'
 import Toast from 'react-native-toast-message'
 
 import { NavigationBar } from './src/features/NavigationBar/NavigationBar'
+import { AddNewMetric } from './src/pages/AddNewMetric'
 import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
 import { ManageMetrics } from './src/pages/ManageMetrics'
@@ -11,9 +12,9 @@ import { MetricData } from './src/pages/MetricData'
 import { Settings } from './src/pages/Settings'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
-import { RootStackParamList, Routes } from './src/shared/interfaces'
 import { toastConfig } from './src/shared/toastConfig'
 import { UI_THEME } from './src/shared/ui/constants'
+import { RootStackParamList, Routes } from './src/shared/useNavigator3000'
 
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -62,6 +63,7 @@ export default function App() {
               headerBackVisible: false,
             }}
           />
+          <Stack.Screen name={Routes.ADD_NEW_METRIC} component={AddNewMetric} />
         </Stack.Navigator>
         <NavigationBar />
       </NavigationContainer>

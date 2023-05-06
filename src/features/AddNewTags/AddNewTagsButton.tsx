@@ -1,14 +1,13 @@
-import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 
-import { navigationProps, Routes } from '../../shared/interfaces'
 import { COLORS } from '../../shared/ui/constants'
+import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
 
 interface AddNewTagsButtonProps {}
 
 export const AddNewTagsButton: React.FC<AddNewTagsButtonProps> = () => {
-  const navigation = useNavigation<navigationProps>()
+  const navigation = useNavigator3000()
 
   return (
     <View style={styles.container}>

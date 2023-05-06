@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
@@ -6,10 +5,10 @@ import { Button } from '../entities/Button/Button'
 import { Container } from '../entities/Container/Container'
 import { AddNewTagsButton } from '../features/AddNewTags/AddNewTagsButton'
 import { TagsList } from '../features/TagsList/TagsList'
-import { navigationProps, Routes } from '../shared/interfaces'
+import { Routes, useNavigator3000 } from '../shared/useNavigator3000'
 
 export const TrackTags = () => {
-  const navigation = useNavigation<navigationProps>()
+  const navigation = useNavigator3000()
   return (
     <Container flexWrap="nowrap">
       <View style={styles.container}>

@@ -1,11 +1,11 @@
-import { useNavigation, useNavigationState } from '@react-navigation/native'
+import { useNavigationState } from '@react-navigation/native'
 import React, { useEffect } from 'react'
 import { StyleSheet, TouchableHighlight, View } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 
 import { NAVIGATION_ICONS_MAP } from './icons'
-import { navigationProps, Routes } from '../../shared/interfaces'
 import { ANIMATION_CONFIG, COLORS } from '../../shared/ui/constants'
+import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
 
 interface NavigationButtonProps {
   route: Routes
@@ -17,7 +17,7 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
   isDisabled = false,
 }) => {
   const [isActive, setIsActive] = React.useState(false)
-  const navigation = useNavigation<navigationProps>()
+  const navigation = useNavigator3000()
   const navigationState = useNavigationState((state) => state)
   useEffect(() => {
     if (!navigationState && Routes.INITIAL === route) {

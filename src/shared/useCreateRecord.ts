@@ -1,13 +1,12 @@
-import { useNavigation } from '@react-navigation/native'
 import * as Haptics from 'expo-haptics'
 import Toast from 'react-native-toast-message'
 
-import { navigationProps } from './interfaces'
 import { useCreateRecordStore, getRecordedData } from './stores/createRecord'
 import { useRecordsStore } from './stores/records'
+import { useNavigator3000 } from './useNavigator3000'
 
 export const useCreateRecord = () => {
-  const navigation = useNavigation<navigationProps>()
+  const navigation = useNavigator3000()
   const { addRecord } = useRecordsStore()
   const { resetCreationState } = useCreateRecordStore()
   const { tags, metrics } = getRecordedData()

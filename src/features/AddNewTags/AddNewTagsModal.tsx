@@ -1,21 +1,20 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 
 import { Button } from '../../entities/Button/Button'
 import { Container } from '../../entities/Container/Container'
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
-import { navigationProps } from '../../shared/interfaces'
 import { useCreateRecordStore } from '../../shared/stores/createRecord'
 import { getUserTags, useUserEntitiesStore } from '../../shared/stores/userEntities'
 import { COLORS } from '../../shared/ui/constants'
+import { useNavigator3000 } from '../../shared/useNavigator3000'
 
 export const AddNewTagsModal: React.FC = () => {
   const [tags, setTags] = useState('')
   const { addUserTags } = useUserEntitiesStore()
   const { addTagsToTheRecord } = useCreateRecordStore()
+  const navigation = useNavigator3000()
 
-  const navigation = useNavigation<navigationProps>()
   const userTags = getUserTags()
 
   const getUniqueTagsToSave = () => {

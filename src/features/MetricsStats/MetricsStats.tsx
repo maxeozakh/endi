@@ -1,15 +1,14 @@
-import { useNavigation } from '@react-navigation/native'
 import React, { useCallback } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useMetricStat } from './useMetricsStat'
 import { MetricStatsCard } from '../../entities/MetricStatsCard/MetricStatsCard'
-import { navigationProps } from '../../shared/interfaces'
 import { getUserMetrics } from '../../shared/stores/userEntities'
+import { useNavigator3000 } from '../../shared/useNavigator3000'
 
 export const MetricsStats: React.FC = () => {
   const metrics = getUserMetrics()
-  const navigation = useNavigation<navigationProps>()
+  const navigation = useNavigator3000()
 
   return (
     <View style={styles.container}>
