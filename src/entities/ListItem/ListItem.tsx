@@ -1,5 +1,5 @@
 import React from 'react'
-import { GestureResponderEvent, StyleSheet, Text, TouchableHighlight } from 'react-native'
+import { GestureResponderEvent, StyleSheet, TouchableHighlight, View } from 'react-native'
 
 import { COLORS } from '../../shared/ui/constants'
 
@@ -11,8 +11,8 @@ interface ListItemProps {
 
 export const ListItem: React.FC<ListItemProps> = ({ onPress, label, children }) => {
   return (
-    <TouchableHighlight style={styles.container} onPress={onPress}>
-      <Text style={styles.content}>{children || label}</Text>
+    <TouchableHighlight onPress={onPress}>
+      <View style={styles.container}>{children || label}</View>
     </TouchableHighlight>
   )
 }
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.GRAY_DARK,
     borderRadius: 8,
-    paddingVertical: 16,
+    paddingVertical: 8,
     paddingHorizontal: 16,
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 2,
-  },
-  content: {
-    color: 'white',
+    width: '100%',
+    height: 48,
   },
 })

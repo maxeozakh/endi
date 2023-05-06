@@ -42,8 +42,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    // sorry mom
-    marginTop: -4,
   },
   colorIcon: {
     marginRight: 8,

@@ -1,5 +1,5 @@
 import { getLastWeekRecordsByMetric, getRecordsWithMetric } from './stores/records'
-import { getUserTagNames } from './stores/userEntities'
+import { getActiveUserTags } from './stores/userEntities'
 
 enum Period {
   WEEK = 'week',
@@ -20,9 +20,9 @@ export const useInsights = (period: Period = Period.WEEK) => {
       return []
     }
 
-    const userTagNames = getUserTagNames()
+    const activeUserTagNames = getActiveUserTags().map((tag) => tag.name)
 
-    const correlations = userTagNames.map((tag) => {
+    const correlations = activeUserTagNames.map((tag) => {
       let metricTotalValue = 0
       let metricWithTagTotalValue = 0
       let recordsWithTagCount = 0

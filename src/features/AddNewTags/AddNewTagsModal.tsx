@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import uuid from 'react-native-uuid'
 
 import { Button } from '../../entities/Button/Button'
@@ -18,19 +19,26 @@ export const AddNewTagsModal: React.FC = () => {
 
   const userTagNames = getUserTagNames()
 
-  const getUniqueTagsToSave = () => {
+  const getTagsToSave = () => {
     const newTags = tags.split(',').map((tag) => {
       return { name: tag.trim(), id: uuid.v4() as string, isActive: true }
     })
-    const uniqueNewTags = newTags
-      .filter((tag) => !userTagNames.includes(tag.name))
-      .filter((tag) => tag.name !== '')
+    const uniqueNewTags = newTags.filter((tag) => tag.name !== '')
 
     return uniqueNewTags
   }
 
   const handleSaveTags = () => {
-    const tags = getUniqueTagsToSave()
+    const tags = getTagsToSave()
+
+    if (tags.find((tag) => userTagNames.includes(tag.name))) {
+      return Toast.show({
+        type: 'info',
+        text1: '',
+        text2: 'You already have this tag',
+      })
+    }
+
     addUserTags(tags)
     addTagsToTheRecord(tags.map((tag) => tag.name))
     navigation.goBack()

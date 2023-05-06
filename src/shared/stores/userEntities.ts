@@ -28,6 +28,7 @@ type Actions = {
   deleteUserMetric: (id: string) => void
   updateUserMetric: (id: string, metric: UserMetric) => void
   resetUserEntities: () => void
+  updateUserTag: (id: string, metric: UserTag) => void
 }
 
 export const useUserEntitiesStore = create<State & Actions>()(
@@ -44,6 +45,9 @@ export const useUserEntitiesStore = create<State & Actions>()(
           set((state) => ({ metrics: state.metrics.filter((metric) => metric.id !== id) })),
         updateUserMetric: (id, metric) =>
           set((state) => ({ metrics: state.metrics.map((m) => (m.id === id ? metric : m)) })),
+
+        updateUserTag: (id, tag) =>
+          set((state) => ({ tags: state.tags.map((t) => (t.id === id ? tag : t)) })),
       }),
       {
         name: 'user-entities-store',
@@ -54,11 +58,18 @@ export const useUserEntitiesStore = create<State & Actions>()(
 )
 
 export const getUserTags = () => useUserEntitiesStore((state) => state.tags)
+
+export const getActiveUserTags = () =>
+  useUserEntitiesStore((state) => state.tags).filter((tag) => tag.isActive)
+
 export const getUserTagNames = () =>
   useUserEntitiesStore((state) => state.tags).map((tag) => tag.name)
+
 export const getUserMetrics = () => useUserEntitiesStore((state) => state.metrics)
+
 export const getActiveUserMetrics = () =>
   useUserEntitiesStore((state) => state.metrics).filter((metric) => metric.isActive)
+
 export const getUserMetricByName = (name: string) =>
   useUserEntitiesStore((state) => state.metrics.find((metric) => metric.name === name))
 

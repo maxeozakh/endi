@@ -9,6 +9,7 @@ import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
 import { EditMetric } from './src/pages/EditMetric'
 import { ManageMetrics } from './src/pages/ManageMetrics'
+import { ManageTags } from './src/pages/ManageTags'
 import { MetricData } from './src/pages/MetricData'
 import { Settings } from './src/pages/Settings'
 import { TrackMetrics } from './src/pages/TrackMetrics'
@@ -45,9 +46,10 @@ export default function App() {
               headerTitle: props.route.params.metricName,
             })}
           />
+          <Stack.Screen name={Routes.ADD_NEW_TAGS} component={AddNewTags} />
           <Stack.Screen
-            options={{ presentation: 'modal' }}
-            name={Routes.ADD_NEW_TAGS}
+            options={{ presentation: 'modal', headerTitle: 'Add new tags' }}
+            name={Routes.ADD_NEW_TAGS_MODAL}
             component={AddNewTags}
           />
           <Stack.Screen
@@ -60,6 +62,7 @@ export default function App() {
           <Stack.Screen name={Routes.MANAGE_METRICS} component={ManageMetrics} />
           <Stack.Screen name={Routes.ADD_NEW_METRIC} component={AddNewMetric} />
           <Stack.Screen name={Routes.EDIT_METRIC} component={EditMetric} />
+          <Stack.Screen name={Routes.MANAGE_TAGS} component={ManageTags} />
         </Stack.Navigator>
         <NavigationBar />
       </NavigationContainer>

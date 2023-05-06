@@ -4,19 +4,20 @@ import { ScrollView } from 'react-native-gesture-handler'
 
 import { Tag } from '../../entities/Tag/Tag'
 import { getRecordedTags } from '../../shared/stores/createRecord'
-import { getUserTagNames } from '../../shared/stores/userEntities'
+import { getActiveUserTags } from '../../shared/stores/userEntities'
 
 interface TagsListProps {}
 
 export const TagsList: React.FC<TagsListProps> = () => {
-  const tagNames = getUserTagNames()
+  const tagNames = getActiveUserTags()
   const tagsRecord = getRecordedTags()
 
   return (
     <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
-      {tagNames.map((tagName, i) => {
-        const isChosed = tagsRecord.includes(tagName)
-        return <Tag key={i} name={tagName} isChosed={isChosed} />
+      {tagNames.map((tag, i) => {
+        const { name } = tag
+        const isChosed = tagsRecord.includes(name)
+        return <Tag key={i} name={name} isChosed={isChosed} />
       })}
     </ScrollView>
   )

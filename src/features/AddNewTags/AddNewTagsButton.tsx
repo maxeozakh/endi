@@ -12,7 +12,7 @@ export const AddNewTagsButton: React.FC<AddNewTagsButtonProps> = () => {
   return (
     <View style={styles.container}>
       <TouchableHighlight
-        onPress={() => navigation.navigate(Routes.ADD_NEW_TAGS)}
+        onPress={() => navigation.navigate(Routes.ADD_NEW_TAGS_MODAL)}
         style={styles.addNewTagButton}>
         <Text style={styles.addNewTagButtonText}>+</Text>
       </TouchableHighlight>
