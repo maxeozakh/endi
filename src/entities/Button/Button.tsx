@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const touchProps = {
     activeOpacity: 1,
-    style: isPress ? { ...styles.btnPress } : { ...styles.btnNormal, ...stylesProp }, // <-- but you can still apply other style changes
+    style: isPress ? { ...styles.btnPress, ...stylesProp } : { ...styles.btnNormal, ...stylesProp }, // <-- but you can still apply other style changes
     onHideUnderlay: () => setIsPress(false),
     onShowUnderlay: () => setIsPress(true),
     onPress,
