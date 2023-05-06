@@ -1,9 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native'
 
 import { Button } from '../../entities/Button/Button'
 import { Container } from '../../entities/Container/Container'
+import { TextTheme } from '../../entities/TextTheme/TextTheme'
 import { navigationProps } from '../../shared/interfaces'
 import { useCreateRecordStore } from '../../shared/stores/createRecord'
 import { getUserTags, useUserEntitiesStore } from '../../shared/stores/userEntities'
@@ -19,7 +20,10 @@ export const AddNewTagsModal: React.FC = () => {
 
   const getUniqueTagsToSave = () => {
     const newTags = tags.split(',').map((tag) => tag.trim())
-    const uniqueNewTags = newTags.filter((tag) => !userTags.includes(tag))
+    const uniqueNewTags = newTags
+      .filter((tag) => !userTags.includes(tag))
+      .filter((tag) => tag !== '')
+
     return uniqueNewTags
   }
 
@@ -34,7 +38,7 @@ export const AddNewTagsModal: React.FC = () => {
     <SafeAreaView>
       <Container>
         <View style={styles.inputContainer}>
-          <Text style={styles.title}>add your own tags, separated by commas</Text>
+          <TextTheme>add your own tags, separated by commas</TextTheme>
           <TextInput
             autoFocus
             value={tags}
@@ -53,9 +57,6 @@ export const AddNewTagsModal: React.FC = () => {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    color: 'white',
-  },
   input: {
     width: '100%',
     height: 44,
