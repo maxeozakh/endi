@@ -1,26 +1,29 @@
 import { useRoute } from '@react-navigation/native'
 import React from 'react'
-import { Button, ScrollView } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 
 import { AverageMetricValue } from '../features/AverageMetricValue/AverageMetricValue'
 import { InfluentialTags } from '../features/InfluentialTags/InfluentialTags'
 import { MetricChart } from '../features/MetricChart/MetricChart'
-import { Period, RouteProps } from '../shared/interfaces'
-import { useMetricDataStore } from '../shared/stores/metricData'
+import { PeriodSelector } from '../features/PeriodSelector/PeriodSelector'
+import { RouteProps } from '../shared/interfaces'
 
 export const MetricData = () => {
   const route = useRoute<RouteProps>()
   const { metricName } = route.params
-  const { selectPeriod } = useMetricDataStore()
 
   return (
-    <ScrollView>
-      <Button title="week" onPress={() => selectPeriod(Period.WEEK)} />
-      <Button title="month" onPress={() => selectPeriod(Period.MONTH)} />
-
+    <ScrollView style={styles.container}>
+      <PeriodSelector />
       <AverageMetricValue name={metricName} />
       <MetricChart name={metricName} />
       <InfluentialTags metricName={metricName} />
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 16,
+  },
+})
