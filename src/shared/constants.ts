@@ -1,3 +1,5 @@
+import { COLORS } from './ui/constants'
+
 const NEGATIVE_TAGS = [
   { id: '1', isActive: true, name: 'bad sleep' },
   { id: '2', isActive: true, name: 'junk food' },
@@ -39,7 +41,7 @@ const POSITIVE_TAGS = [
 export const DEFAULT_TAGS = [...NEGATIVE_TAGS, ...POSITIVE_TAGS]
 
 export const DEFAULT_METRICS = [
-  { name: 'energy', color: '#F5DB5E', id: '1', isActive: true },
+  { name: 'energy', color: COLORS.VIOLET_LIGHT, id: '1', isActive: true },
   { name: 'focus', color: '#E7BDCA', id: '2', isActive: true },
   { name: 'fun', color: '#5A86E9', id: '3', isActive: true },
 ]
