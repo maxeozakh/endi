@@ -1,7 +1,7 @@
 import { useRoute } from '@react-navigation/native'
 import React from 'react'
+import { ScrollView } from 'react-native'
 
-import { Container } from '../entities/Container/Container'
 import { AverageMetricValue } from '../features/AverageMetricValue/AverageMetricValue'
 import { InfluentialTags } from '../features/InfluentialTags/InfluentialTags'
 import { MetricChart } from '../features/MetricChart/MetricChart'
@@ -12,10 +12,10 @@ export const MetricData = () => {
   const { metricName } = route.params
 
   return (
-    <Container justifyContent="flex-start">
+    <ScrollView>
       <AverageMetricValue name={metricName} />
       <MetricChart name={metricName} />
       <InfluentialTags metricName={metricName} />
-    </Container>
+    </ScrollView>
   )
 }

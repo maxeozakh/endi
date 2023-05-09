@@ -3,6 +3,21 @@ import { getLastWeekRecordsByMetric, getRecordsWithMetric } from './stores/recor
 import { getActiveUserTags } from './stores/userEntities'
 
 export const useInsights = (period: Period = Period.WEEK) => {
+  const getCornerDatesByPeriod = () => {
+    if (period === Period.WEEK) {
+      const today = new Date(
+        new Date().getFullYear(),
+        new Date().getMonth(),
+        new Date().getDate(),
+        23,
+        59,
+        59
+      )
+      const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6)
+
+      return [lastWeek, today]
+    }
+  }
   const getCorrelationsByMetric = (metricName: string) => {
     // period, metricName =>
     // all correlations between given metric and tags by the period
@@ -90,5 +105,5 @@ export const useInsights = (period: Period = Period.WEEK) => {
     return metricAvg
   }
 
-  return { getCorrelationsByMetric, getAverageMetricValue }
+  return { getCorrelationsByMetric, getAverageMetricValue, getCornerDatesByPeriod }
 }

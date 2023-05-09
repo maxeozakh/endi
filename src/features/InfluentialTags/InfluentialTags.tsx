@@ -20,7 +20,7 @@ export const InfluentialTags: React.FC<InfluentialTagsProps> = ({ metricName }) 
     <View style={styles.container}>
       <Text style={styles.title}>Influential tags</Text>
 
-      {correlations.map((correlationData, i) => {
+      {correlations.map((correlationData) => {
         const { tag, correlation } = correlationData
 
         const sign = correlation < 0 ? '+' : '-'
@@ -40,8 +40,9 @@ export const InfluentialTags: React.FC<InfluentialTagsProps> = ({ metricName }) 
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginVertical: 16,
     width: '100%',
+    flex: 1,
   },
   title: {
     fontSize: 24,
