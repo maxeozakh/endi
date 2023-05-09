@@ -3,7 +3,8 @@ import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
 import { getWeekStructure } from '../../features/MetricChart/utils'
-import { isInThisWeek } from '../utils'
+import { Period } from '../interfaces'
+import { isInThisMonth, isInThisWeek } from '../utils'
 
 export type MetricValue = 1 | 2 | 3 | 4 | 5 | 0
 export interface RecordItem {
@@ -61,6 +62,29 @@ export const getLastWeekRecordsByMetric = (metricName: string) => {
   return recordsWithMetric.filter((record) => {
     return isInThisWeek(new Date(record.date))
   })
+}
+
+export const getLastMonthRecordsByMetric = (metricName: string) => {
+  const recordsWithMetric = getRecordsWithMetric(metricName)
+
+  return recordsWithMetric.filter((record) => {
+    return isInThisMonth(new Date(record.date))
+  })
+}
+
+export const getRecordsByPeriodAndMetric = (period: Period, metricName: string) => {
+  let recordsByPeriod = []
+
+  switch (period) {
+    case Period.WEEK:
+      recordsByPeriod = getLastWeekRecordsByMetric(metricName)
+      break
+    case Period.MONTH:
+      recordsByPeriod = getLastMonthRecordsByMetric(metricName)
+      break
+  }
+
+  return recordsByPeriod
 }
 
 export const getMetricValuesByWeekDays = (metricName: string) => {

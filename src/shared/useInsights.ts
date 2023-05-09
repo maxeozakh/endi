@@ -1,31 +1,42 @@
 import { Period } from './interfaces'
-import { getLastWeekRecordsByMetric, getRecordsWithMetric } from './stores/records'
+import {
+  getLastWeekRecordsByMetric,
+  getRecordsByPeriodAndMetric,
+  getRecordsWithMetric,
+} from './stores/records'
 import { getActiveUserTags } from './stores/userEntities'
 
 export const useInsights = (period: Period = Period.WEEK) => {
-  const getCornerDatesByPeriod = () => {
-    if (period === Period.WEEK) {
-      const today = new Date(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate(),
-        23,
-        59,
-        59
-      )
-      const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6)
+  let pastDays = null
 
-      return [lastWeek, today]
-    }
+  switch (period) {
+    case Period.WEEK:
+      pastDays = 6
+      break
+    case Period.MONTH:
+      pastDays = 29
+      break
   }
+
+  const getCornerDatesByPeriod = () => {
+    const today = new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate(),
+      23,
+      59,
+      59
+    )
+
+    const past = new Date(today.getFullYear(), today.getMonth(), today.getDate() - pastDays)
+
+    return [past, today]
+  }
+
   const getCorrelationsByMetric = (metricName: string) => {
+    const recordsByPeriod = getRecordsByPeriodAndMetric(period, metricName)
     // period, metricName =>
     // all correlations between given metric and tags by the period
-
-    const recordsByPeriod =
-      period === Period.WEEK
-        ? getLastWeekRecordsByMetric(metricName)
-        : getRecordsWithMetric(metricName)
 
     if (!recordsByPeriod.length) {
       return []

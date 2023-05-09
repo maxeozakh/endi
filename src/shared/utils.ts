@@ -21,3 +21,17 @@ export const isInThisWeek = (date: Date) => {
 
   return date > lastWeek && date <= today
 }
+
+export const isInThisMonth = (date: Date) => {
+  const today = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    new Date().getDate(),
+    23,
+    59,
+    59
+  )
+  const past = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 29)
+
+  return date > past && date <= today
+}
