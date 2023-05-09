@@ -59,7 +59,7 @@ export const AddNewTagsModal: React.FC = () => {
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button onPress={handleSaveTags} label="save" />
+          <Button onPress={handleSaveTags} title="save" />
         </View>
       </Container>
     </SafeAreaView>

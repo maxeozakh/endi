@@ -75,7 +75,7 @@ export const EditMetric: React.FC = () => {
         <Switch style={styles.switch} onChange={() => setIsActive(!isActive)} value={isActive} />
       </View>
       <View>
-        <Button onPress={handleSave} label="Update" />
+        <Button onPress={handleSave} title="Update" />
       </View>
     </View>
   )
