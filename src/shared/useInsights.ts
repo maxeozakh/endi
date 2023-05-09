@@ -1,4 +1,5 @@
 import { Period } from './interfaces'
+import { getSelectedPeriod } from './stores/metricData'
 import {
   getLastWeekRecordsByMetric,
   getRecordsByPeriodAndMetric,
@@ -6,10 +7,11 @@ import {
 } from './stores/records'
 import { getActiveUserTags } from './stores/userEntities'
 
-export const useInsights = (period: Period = Period.WEEK) => {
+export const useInsights = () => {
+  const selectedPeriod = getSelectedPeriod()
   let pastDays = null
 
-  switch (period) {
+  switch (selectedPeriod) {
     case Period.WEEK:
       pastDays = 6
       break
@@ -34,7 +36,7 @@ export const useInsights = (period: Period = Period.WEEK) => {
   }
 
   const getCorrelationsByMetric = (metricName: string) => {
-    const recordsByPeriod = getRecordsByPeriodAndMetric(period, metricName)
+    const recordsByPeriod = getRecordsByPeriodAndMetric(selectedPeriod, metricName)
     // period, metricName =>
     // all correlations between given metric and tags by the period
 
@@ -99,7 +101,7 @@ export const useInsights = (period: Period = Period.WEEK) => {
 
   const getAverageMetricValue = (metricName: string) => {
     const recordsByPeriod =
-      period === Period.WEEK
+      selectedPeriod === Period.WEEK
         ? getLastWeekRecordsByMetric(metricName)
         : getRecordsWithMetric(metricName)
 

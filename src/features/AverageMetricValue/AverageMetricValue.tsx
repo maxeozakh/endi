@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native'
 
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
 import { ESTIMATE_MAP, MONTHS } from '../../shared/constants'
-import { Period } from '../../shared/interfaces'
 import { useInsights } from '../../shared/useInsights'
 
 interface Props {
@@ -11,7 +10,8 @@ interface Props {
 }
 
 export const AverageMetricValue: React.FC<Props> = ({ name: metricName }) => {
-  const { getAverageMetricValue, getCornerDatesByPeriod } = useInsights(Period.MONTH)
+  const { getAverageMetricValue, getCornerDatesByPeriod } = useInsights()
+
   const [from, to] = getCornerDatesByPeriod()
   const averageMetricValue = getAverageMetricValue(metricName)
 

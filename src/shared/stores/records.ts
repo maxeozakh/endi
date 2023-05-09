@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
 
-import { getWeekStructure } from '../../features/MetricChart/utils'
 import { Period } from '../interfaces'
 import { isInThisMonth, isInThisWeek } from '../utils'
 
@@ -73,7 +72,7 @@ export const getLastMonthRecordsByMetric = (metricName: string) => {
 }
 
 export const getRecordsByPeriodAndMetric = (period: Period, metricName: string) => {
-  let recordsByPeriod = []
+  let recordsByPeriod: RecordItem[] = []
 
   switch (period) {
     case Period.WEEK:
@@ -85,25 +84,4 @@ export const getRecordsByPeriodAndMetric = (period: Period, metricName: string) 
   }
 
   return recordsByPeriod
-}
-
-export const getMetricValuesByWeekDays = (metricName: string) => {
-  const records = getLastWeekRecordsByMetric(metricName)
-
-  const weekStructure = getWeekStructure()
-
-  const metricValuesByWeekDays = weekStructure.map((day) => {
-    const dayRecord = records.find((record) => {
-      return new Date(record.date).toDateString() === new Date(day).toDateString()
-    })
-
-    const value = dayRecord?.metrics[metricName] || null
-
-    return {
-      day,
-      value,
-    }
-  })
-
-  return metricValuesByWeekDays
 }

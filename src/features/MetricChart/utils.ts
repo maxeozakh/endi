@@ -1,14 +1,27 @@
-export const getWeekStructure = () => {
-  const today = new Date()
+import { Period } from '../../shared/interfaces'
 
-  const lastWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6)
+export const getChartStrucutre = (period: Period) => {
+  let pastDays = null
 
-  const weekStructure: string[] = []
-  for (let i = 0; i < 7; i++) {
-    const day = new Date(lastWeek)
-    day.setDate(day.getDate() + i)
-    weekStructure.push(day.toDateString())
+  switch (period) {
+    case Period.WEEK:
+      pastDays = 6
+      break
+    case Period.MONTH:
+      pastDays = 29
+      break
   }
 
-  return weekStructure
+  const today = new Date()
+
+  const past = new Date(today.getFullYear(), today.getMonth(), today.getDate() - pastDays)
+
+  const structure: string[] = []
+  for (let i = 0; i < pastDays + 1; i++) {
+    const day = new Date(past)
+    day.setDate(day.getDate() + i)
+    structure.push(day.toDateString())
+  }
+
+  return structure
 }

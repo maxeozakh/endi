@@ -1,68 +1,64 @@
 import React from 'react'
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from 'victory-native'
 
-import { getMetricValuesByWeekDays } from '../../shared/stores/records'
-import { getUserMetricByName } from '../../shared/stores/userEntities'
+import { useChartData } from './useChartData'
 import { COLORS } from '../../shared/ui/constants'
 
 interface MetricChartProps {
   name: string
 }
 
-export const MetricChart: React.FC<MetricChartProps> = ({ name }) => {
-  const weekData = getMetricValuesByWeekDays(name)
-  const metricData = getUserMetricByName(name)
-  const { color } = metricData
-
-  const axisStyle = {
-    axis: {
-      stroke: COLORS.GRAY_MEDIUM,
-    },
-    axisLabel: {
-      color: 'white',
-      fill: 'white',
-    },
-    tickLabels: {
-      stroke: COLORS.GRAY_MEDIUM,
-      fontFamily: 'Helvetica',
-      fontWeight: '200',
-    },
-  }
-
-  const horizontalAxisStyle = {
-    ...axisStyle,
-    grid: {
-      stroke: COLORS.GRAY_MEDIUM,
-      strokeDasharray: '4, 4',
-      strokeWidth: 0.7,
-    },
-  }
+export const MetricChart: React.FC<MetricChartProps> = ({ name: metricName }) => {
+  const { barStyles, data, verticalTickFormatFn, horizontalTickFormatFn, cornerRadiusStyle } =
+    useChartData(metricName)
 
   return (
     <VictoryChart padding={{ left: 18, bottom: 40, right: 28 }} domainPadding={10}>
       <VictoryAxis
-        tickFormat={(t) => Math.round(t)}
+        tickFormat={verticalTickFormatFn}
         domain={[0, 5]}
         dependentAxis
         style={horizontalAxisStyle}
       />
-      <VictoryAxis style={axisStyle} tickFormat={(t) => t.slice(0, 3)} />
+      <VictoryAxis style={axisStyle} tickCount={4} tickFormat={horizontalTickFormatFn} />
       <VictoryBar
-        cornerRadius={{ topLeft: 5, topRight: 5 }}
+        animate={{
+          duration: 300,
+          easing: 'quadInOut',
+          onLoad: { duration: 600 },
+        }}
+        cornerRadius={cornerRadiusStyle}
         theme={VictoryTheme.material}
         x="day"
         y="value"
-        style={{
-          data: { fill: color, width: 35 },
-          labels: {
-            fill: 'white',
-            stroke: 'white',
-            color: 'white',
-          },
-        }}
+        style={barStyles}
         domainPadding={{ x: 10 }}
-        data={weekData}
+        data={data}
       />
     </VictoryChart>
   )
+}
+
+const axisStyle = {
+  axis: {
+    stroke: COLORS.GRAY_MEDIUM,
+  },
+  axisLabel: {
+    color: 'white',
+    fill: 'white',
+  },
+  tickLabels: {
+    stroke: COLORS.GRAY_MEDIUM,
+    fontFamily: 'Helvetica',
+    fontWeight: '200',
+  },
+}
+
+const horizontalAxisStyle = {
+  ...axisStyle,
+  grid: {
+    stroke: COLORS.GRAY_MEDIUM,
+    strokeDasharray: '4, 4',
+    strokeWidth: 0.7,
+  },
 }
