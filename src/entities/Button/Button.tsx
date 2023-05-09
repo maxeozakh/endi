@@ -5,7 +5,7 @@ import { COLORS } from '../../shared/ui/constants'
 import { TextTheme } from '../TextTheme/TextTheme'
 
 interface ButtonProps {
-  label?: string
+  title?: string
   onPress: () => void
   children?: React.ReactNode
   fontSize?: number
@@ -13,7 +13,7 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  label,
+  title,
   onPress,
   children,
   fontSize,
@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableHighlight style={styles.container} {...touchProps}>
-      <TextTheme stylesProp={styles.text}>{children || label}</TextTheme>
+      <TextTheme stylesProp={styles.text}>{children || title}</TextTheme>
     </TouchableHighlight>
   )
 }
