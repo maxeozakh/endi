@@ -1,24 +1,17 @@
-import {
-  //
-  // Button,
-  Text,
-  View,
-} from 'react-native'
+import { Text, View } from 'react-native'
 
 import { Container } from '../entities/Container/Container'
 import { MetricsStats } from '../features/MetricsStats/MetricsStats'
+import { Testing } from '../features/Testing/Testing'
 import { getRecords } from '../shared/stores/records'
-// import { useTestData } from '../shared/useTestData'
 
 export const Dashboard = () => {
-  // const { resetData, insertTestData } = useTestData()
   const records = getRecords()
   const isAnyRecords = records.length > 0
 
   return (
     <Container justifyContent="center">
-      {/* <Button title="reset" onPress={resetData} /> */}
-      {/* <Button title="insert" onPress={insertTestData} /> */}
+      <Testing />
       {isAnyRecords ? (
         <MetricsStats />
       ) : (
