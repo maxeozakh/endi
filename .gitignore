@@ -64,3 +64,6 @@ buck-out/
 web-build/
 
 src/shared/test_data/*
+
+app.json
+eas.json
