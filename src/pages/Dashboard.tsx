@@ -2,7 +2,7 @@ import { Text, View } from 'react-native'
 
 import { Container } from '../entities/Container/Container'
 import { MetricsStats } from '../features/MetricsStats/MetricsStats'
-import { Testing } from '../features/Testing/Testing'
+// import { Testing } from '../features/Testing/Testing'
 import { getRecords } from '../shared/stores/records'
 
 export const Dashboard = () => {
@@ -11,7 +11,7 @@ export const Dashboard = () => {
 
   return (
     <Container justifyContent="center">
-      <Testing />
+      {/* <Testing /> */}
       {isAnyRecords ? (
         <MetricsStats />
       ) : (

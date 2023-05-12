@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import * as Notifications from 'expo-notifications'
 import { SafeAreaView } from 'react-native'
 import Toast from 'react-native-toast-message'
 
@@ -9,6 +10,7 @@ import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
 import { EditMetric } from './src/pages/EditMetric'
 import { ManageMetrics } from './src/pages/ManageMetrics'
+import { ManageReminder } from './src/pages/ManageReminder'
 import { ManageTags } from './src/pages/ManageTags'
 import { MetricData } from './src/pages/MetricData'
 import { Settings } from './src/pages/Settings'
@@ -18,8 +20,17 @@ import { toastConfig } from './src/shared/toastConfig'
 import { UI_THEME } from './src/shared/ui/constants'
 import { RootStackParamList, Routes } from './src/shared/useNavigator3000'
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+})
+
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>()
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       <NavigationContainer theme={UI_THEME}>
@@ -64,6 +75,7 @@ export default function App() {
           <Stack.Screen name={Routes.ADD_NEW_METRIC} component={AddNewMetric} />
           <Stack.Screen name={Routes.EDIT_METRIC} component={EditMetric} />
           <Stack.Screen name={Routes.MANAGE_TAGS} component={ManageTags} />
+          <Stack.Screen name={Routes.MANAGE_REMINDER} component={ManageReminder} />
         </Stack.Navigator>
         <NavigationBar />
       </NavigationContainer>

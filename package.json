@@ -18,7 +18,10 @@
     "react-native-uuid": "^2.0.1",
     "react-native-web": "~0.18.7",
     "victory-native": "^36.6.8",
-    "zustand": "^4.3.7"
+    "zustand": "^4.3.7",
+    "expo-notifications": "~0.18.1",
+    "expo-device": "~5.2.1",
+    "@react-native-community/datetimepicker": "6.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

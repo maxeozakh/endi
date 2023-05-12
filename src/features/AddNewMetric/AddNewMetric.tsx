@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
 import { View, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import uuid from 'react-native-uuid'
 
 import { Button } from '../../entities/Button/Button'
 import { getUserMetrics, useUserEntitiesStore } from '../../shared/stores/userEntities'
 import { COLORS } from '../../shared/ui/constants'
 import { Routes, useNavigator3000 } from '../../shared/useNavigator3000'
-import { Toast } from 'react-native-toast-message/lib/src/Toast'
 
 export const AddNewMetric: React.FC = () => {
   const [metricName, setMetricName] = React.useState('')
@@ -76,7 +76,7 @@ export const AddNewMetric: React.FC = () => {
       </View>
 
       <View>
-        <Button onPress={handleSave} label="save" />
+        <Button onPress={handleSave} title="save" />
       </View>
     </View>
   )
