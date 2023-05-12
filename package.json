@@ -41,7 +41,7 @@
   },
   "version": "1.0.0",
   "private": true,
-  "name": "endi",
+  "name": "endy",
   "eslintConfig": {
     "extends": "universe/native"
   }
