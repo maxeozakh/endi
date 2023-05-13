@@ -33,7 +33,15 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
       // for the tracking set active both for tags and metrics
       (route === Routes.TRACK_TAGS && routes[index].name === Routes.TRACK_METRICS) ||
       // also for the dashboard & metric data too
-      (route === Routes.DASHBOARD && routes[index].name === Routes.METRIC_DATA)
+      (route === Routes.DASHBOARD && routes[index].name === Routes.METRIC_DATA) ||
+      // settings as well, will be good to do something with this, and probably there is something like
+      // nesting routes, but I don't know how to do it yet
+      (route === Routes.SETTINGS && routes[index].name === Routes.MANAGE_REMINDER) ||
+      (route === Routes.SETTINGS && routes[index].name === Routes.EDIT_METRIC) ||
+      (route === Routes.SETTINGS && routes[index].name === Routes.ADD_NEW_TAGS) ||
+      (route === Routes.SETTINGS && routes[index].name === Routes.ADD_NEW_METRIC) ||
+      (route === Routes.SETTINGS && routes[index].name === Routes.MANAGE_TAGS) ||
+      (route === Routes.SETTINGS && routes[index].name === Routes.MANAGE_METRICS)
     ) {
       setIsActive(true)
     } else {
