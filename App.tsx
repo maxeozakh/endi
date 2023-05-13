@@ -9,6 +9,7 @@ import { AddNewMetric } from './src/pages/AddNewMetric'
 import { AddNewTags } from './src/pages/AddNewTags'
 import { Dashboard } from './src/pages/Dashboard'
 import { EditMetric } from './src/pages/EditMetric'
+import { HorizontalDeathend } from './src/pages/HorizontalDeathend'
 import { ManageMetrics } from './src/pages/ManageMetrics'
 import { ManageReminder } from './src/pages/ManageReminder'
 import { ManageTags } from './src/pages/ManageTags'
@@ -34,6 +35,7 @@ export default function App() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       <NavigationContainer theme={UI_THEME}>
+        <HorizontalDeathend />
         <Stack.Navigator>
           <Stack.Screen
             name={Routes.DASHBOARD}
