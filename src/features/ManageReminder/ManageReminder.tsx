@@ -4,6 +4,12 @@ import React, { useEffect } from 'react'
 import { StyleSheet, Switch, View } from 'react-native'
 
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
+import {
+  getTime,
+  useReminderStore,
+  getIsEnabled,
+  getIsReminderPermissionGranted,
+} from '../../shared/stores/reminder'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -14,19 +20,11 @@ Notifications.setNotificationHandler({
 })
 
 export const ManageReminder: React.FC = () => {
-  const [isPermissionGranted, setIsPermissionGranted] = React.useState(true)
+  const { setTime, setIsEnabled, setIsPermissionGranted } = useReminderStore()
+  const isEnabled = getIsEnabled()
+  const isPermissionGranted = getIsReminderPermissionGranted()
 
-  const defaultDate = new Date(
-    new Date().getFullYear(),
-    new Date().getMonth(),
-    new Date().getDate(),
-    20,
-    0,
-    0
-  )
-
-  const [date, setDate] = React.useState(defaultDate)
-  const [isEnabled, setIsEnabled] = React.useState(false)
+  const time = new Date(getTime())
 
   const turnOnNotification = async () => {
     const { status } = await Notifications.requestPermissionsAsync()
@@ -42,8 +40,8 @@ export const ManageReminder: React.FC = () => {
         body: "don't forget to track your metrics today! 🦊",
       },
       trigger: {
-        hour: date.getHours(),
-        minute: date.getMinutes(),
+        hour: time.getHours(),
+        minute: time.getMinutes(),
         repeats: true,
       },
     })
@@ -55,7 +53,7 @@ export const ManageReminder: React.FC = () => {
     } else {
       Notifications.cancelAllScheduledNotificationsAsync()
     }
-  }, [isEnabled, date])
+  }, [isEnabled, time])
 
   return (
     <View style={styles.container}>
@@ -63,8 +61,8 @@ export const ManageReminder: React.FC = () => {
       <DateTimePicker
         disabled={!isPermissionGranted}
         themeVariant="dark"
-        onChange={(event, date) => setDate(date)}
-        value={date}
+        onChange={(event, time) => setTime(time.toString())}
+        value={time}
         mode="time"
         display="spinner"
       />
