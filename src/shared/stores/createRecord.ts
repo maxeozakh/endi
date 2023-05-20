@@ -4,27 +4,31 @@ import { devtools } from 'zustand/middleware'
 import { MetricValue } from './records'
 
 interface State {
-  tags: string[]
+  recordedTags: string[]
+  searchPhrase: string
   metrics: Record<string, MetricValue | null>
 }
 
 interface Actions {
-  addTagsToTheRecord: (tags: string[]) => void
+  addTagsToTheRecord: (recordedTags: string[]) => void
   removeTagFromTheRecord: (tag: string) => void
   addMetricToTheRecord: (metric: string, value: MetricValue | null) => void
   removeMetricToTheRecord: (metric: string) => void
   resetCreationState: () => void
+  setSearchPhrase: (searchPhrase: string) => void
 }
 
 export const useCreateRecordStore = create<State & Actions>()(
   devtools(
     (set) => ({
-      tags: [],
+      searchPhrase: '',
+      recordedTags: [],
       metrics: {},
 
-      addTagsToTheRecord: (tags: string[]) => set((state) => ({ tags: [...state.tags, ...tags] })),
+      addTagsToTheRecord: (recordedTags: string[]) =>
+        set((state) => ({ recordedTags: [...state.recordedTags, ...recordedTags] })),
       removeTagFromTheRecord: (tag: string) =>
-        set((state) => ({ tags: state.tags.filter((t) => t !== tag) })),
+        set((state) => ({ recordedTags: state.recordedTags.filter((t) => t !== tag) })),
 
       addMetricToTheRecord: (metric: string, value: MetricValue | null) =>
         set((state) => ({ metrics: { ...state.metrics, [metric]: value } })),
@@ -34,7 +38,9 @@ export const useCreateRecordStore = create<State & Actions>()(
           return state.metrics
         }),
 
-      resetCreationState: () => set({ tags: [], metrics: {} }),
+      setSearchPhrase: (searchPhrase: string) => set({ searchPhrase }),
+
+      resetCreationState: () => set({ recordedTags: [], metrics: {} }),
     }),
     {
       name: 'create-record-store',
@@ -42,7 +48,7 @@ export const useCreateRecordStore = create<State & Actions>()(
   )
 )
 
-export const getRecordedTags = () => useCreateRecordStore((state) => state.tags)
+export const getRecordedTags = () => useCreateRecordStore((state) => state.recordedTags)
 export const getRecordedMetrics = () => useCreateRecordStore((state) => state.metrics)
 
 export const getRecordedMetricValue = (metricName: string) => {
@@ -50,5 +56,7 @@ export const getRecordedMetricValue = (metricName: string) => {
   return metricValue
 }
 
+export const getSearchPhrase = () => useCreateRecordStore((state) => state.searchPhrase)
+
 export const getRecordedData = () =>
-  useCreateRecordStore((state) => ({ tags: state.tags, metrics: state.metrics }))
+  useCreateRecordStore((state) => ({ recordedTags: state.recordedTags, metrics: state.metrics }))

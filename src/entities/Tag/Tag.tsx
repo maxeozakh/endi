@@ -41,9 +41,8 @@ export const Tag: React.FC<TagProps> = ({ name, isChosed }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 8,
-    marginBottom: 8,
-    borderWidth: 1,
+    marginRight: 10,
+    marginBottom: 10,
     borderRadius: 20,
     paddingHorizontal: 16,
     paddingVertical: 12,

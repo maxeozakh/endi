@@ -8,6 +8,7 @@ import { Container } from '../../entities/Container/Container'
 import { TextTheme } from '../../entities/TextTheme/TextTheme'
 import { useCreateRecordStore } from '../../shared/stores/createRecord'
 import { getUserTagNames, useUserEntitiesStore } from '../../shared/stores/userEntities'
+import { toastConfig } from '../../shared/toastConfig'
 import { COLORS } from '../../shared/ui/constants'
 import { useNavigator3000 } from '../../shared/useNavigator3000'
 
@@ -62,6 +63,7 @@ export const AddNewTagsModal: React.FC = () => {
           <Button onPress={handleSaveTags} title="save" />
         </View>
       </Container>
+      <Toast config={toastConfig} topOffset={-60} position="top" />
     </SafeAreaView>
   )
 }
