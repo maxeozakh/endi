@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: 34,
+    fontSize: 16,
     color: '#000',
   },
 })

@@ -14,7 +14,7 @@ export const AddNewTagsButton: React.FC<AddNewTagsButtonProps> = () => {
       <TouchableHighlight
         onPress={() => navigation.navigate(Routes.ADD_NEW_TAGS_MODAL)}
         style={styles.addNewTagButton}>
-        <Text style={styles.addNewTagButtonText}>+</Text>
+        <Text style={styles.addNewTagButtonText}>+ add new one</Text>
       </TouchableHighlight>
     </View>
   )
@@ -26,18 +26,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   addNewTagButton: {
-    marginTop: 20,
-    width: 70,
-    height: 70,
-    borderRadius: 50,
-    backgroundColor: COLORS.GRAY_DARK,
-    display: 'flex',
-    justifyContent: 'center',
+    marginRight: 8,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.GRAY_MEDIUM,
   },
   addNewTagButtonText: {
-    fontSize: 34,
+    fontSize: 16,
     color: 'white',
-    lineHeight: 38,
   },
 })
