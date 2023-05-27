@@ -63,7 +63,8 @@ export const useInsights = () => {
 
         metricTotalValue += record.metrics[metricName]
 
-        if (record.tags.includes(tag)) {
+        // tag can be not presented in record, in case if user track only their metrics
+        if (record.tags?.includes(tag)) {
           recordsWithTagCount += 1
           metricWithTagTotalValue += record.metrics[metricName]
         }
