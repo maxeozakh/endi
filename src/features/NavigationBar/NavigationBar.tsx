@@ -1,10 +1,14 @@
 import { StyleSheet, View } from 'react-native'
 
 import { NavigationButton } from '../../entities/NavigationButton/NavigationButton'
+import { getIsWasShown } from '../../shared/stores/littleUserGuide'
 import { COLORS } from '../../shared/ui/constants'
 import { Routes } from '../../shared/useNavigator3000'
 
 export const NavigationBar = () => {
+  const isUserGuideWasShown = getIsWasShown()
+  if (!isUserGuideWasShown) return null
+
   return (
     <View style={styles.container}>
       <NavigationButton route={Routes.DASHBOARD} />

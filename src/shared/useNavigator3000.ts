@@ -22,6 +22,7 @@ export type RootStackParamList = {
   [Routes.ADD_NEW_METRIC]: undefined
   [Routes.EDIT_METRIC]: undefined
   [Routes.MANAGE_REMINDER]: undefined
+  [Routes.WELCOME]: undefined
 }
 
 export enum Routes {
@@ -39,6 +40,7 @@ export enum Routes {
   MANAGE_TAGS = 'manage tags',
   EDIT_TAG = 'edit tag',
   MANAGE_REMINDER = 'manage reminder',
+  WELCOME = 'welcome',
 }
 
 export const useNavigator3000 = () => {

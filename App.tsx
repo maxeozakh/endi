@@ -18,6 +18,8 @@ import { MetricData } from './src/pages/MetricData'
 import { Settings } from './src/pages/Settings'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
+import { Welcome } from './src/pages/Welcome'
+import { getIsWasShown } from './src/shared/stores/littleUserGuide'
 import { toastConfig } from './src/shared/toastConfig'
 import { UI_THEME } from './src/shared/ui/constants'
 import { RootStackParamList, Routes } from './src/shared/useNavigator3000'
@@ -35,6 +37,9 @@ export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>()
   const { activateNotification } = useReminder()
 
+  const isUserGuideWasShown = getIsWasShown()
+  const initialRouteName = isUserGuideWasShown ? Routes.DASHBOARD : Routes.WELCOME
+
   useEffect(() => {
     activateNotification()
   }, [])
@@ -43,7 +48,12 @@ export default function App() {
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
       <NavigationContainer theme={UI_THEME}>
         <HorizontalDeathend />
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={initialRouteName}>
+          <Stack.Screen
+            name={Routes.WELCOME}
+            component={Welcome}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name={Routes.DASHBOARD}
             component={Dashboard}
