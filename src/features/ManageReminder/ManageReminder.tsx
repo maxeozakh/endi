@@ -10,46 +10,27 @@ import {
   getIsEnabled,
   getIsReminderPermissionGranted,
 } from '../../shared/stores/reminder'
+import { useReminder } from '../../shared/useReminder'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
-    shouldSetBadge: false,
+    shouldSetBadge: true,
   }),
 })
 
 export const ManageReminder: React.FC = () => {
-  const { setTime, setIsEnabled, setIsPermissionGranted } = useReminderStore()
+  const { setTime, setIsEnabled } = useReminderStore()
+  const { activateNotification } = useReminder()
   const isEnabled = getIsEnabled()
   const isPermissionGranted = getIsReminderPermissionGranted()
 
   const time = new Date(getTime())
 
-  const turnOnNotification = async () => {
-    const { status } = await Notifications.requestPermissionsAsync()
-    if (status !== 'granted') {
-      return setIsPermissionGranted(false)
-    }
-
-    await Notifications.cancelAllScheduledNotificationsAsync()
-
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'hey fren',
-        body: "don't forget to track your metrics today! 🦊",
-      },
-      trigger: {
-        hour: time.getHours(),
-        minute: time.getMinutes(),
-        repeats: true,
-      },
-    })
-  }
-
   useEffect(() => {
     if (isEnabled) {
-      turnOnNotification()
+      activateNotification()
     } else {
       Notifications.cancelAllScheduledNotificationsAsync()
     }

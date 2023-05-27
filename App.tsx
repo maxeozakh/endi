@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as Notifications from 'expo-notifications'
+import { useEffect } from 'react'
 import { SafeAreaView } from 'react-native'
 import Toast from 'react-native-toast-message'
 
@@ -20,17 +21,23 @@ import { TrackTags } from './src/pages/TrackTags'
 import { toastConfig } from './src/shared/toastConfig'
 import { UI_THEME } from './src/shared/ui/constants'
 import { RootStackParamList, Routes } from './src/shared/useNavigator3000'
+import { useReminder } from './src/shared/useReminder'
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 })
 
 export default function App() {
   const Stack = createNativeStackNavigator<RootStackParamList>()
+  const { activateNotification } = useReminder()
+
+  useEffect(() => {
+    activateNotification()
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
