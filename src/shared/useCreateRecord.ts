@@ -9,7 +9,7 @@ export const useCreateRecord = () => {
   const navigation = useNavigator3000()
   const { addRecord } = useRecordsStore()
   const { resetCreationState } = useCreateRecordStore()
-  const { tags, metrics } = getRecordedData()
+  const { recordedTags, metrics } = getRecordedData()
 
   const handleCreateRecord = () => {
     if (Object.keys(metrics).length === 0) {
@@ -23,7 +23,7 @@ export const useCreateRecord = () => {
     }
 
     addRecord({
-      tags,
+      tags: recordedTags,
       metrics,
       date: new Date().toString(),
     })
