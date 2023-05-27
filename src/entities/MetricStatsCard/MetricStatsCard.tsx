@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Path, Svg } from 'react-native-svg'
 
 import { useMetricStat } from '../../features/MetricsStats/useMetricsStat'
 import { ESTIMATE_MAP } from '../../shared/constants'
@@ -30,7 +31,19 @@ export const MetricStatsCard: React.FC<MetricStatsCardProps> = ({
           </View>
         </View>
         <View>
-          <Text style={[styles.text, styles.lastEditText]}>{lastEditLabel}</Text>
+          <Text style={[styles.text, styles.lastEditText]}>
+            {lastEditLabel}
+            {'  '}
+            <Svg width="7" height="12" viewBox="0 0 7 12" fill="none">
+              <Path
+                d="M1.0044 1L6.0044 6L1.0044 11"
+                stroke={COLORS.GRAY_LIGHT}
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </Svg>
+          </Text>
         </View>
       </>
     </TouchableHighlight>
@@ -68,6 +81,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 16,
+    display: 'flex',
+    justifyContent: 'center',
   },
   estimateValueText: {
     fontWeight: 'bold',
