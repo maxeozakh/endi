@@ -1,3 +1,4 @@
+import { useLittleUserGuideStore } from './stores/littleUserGuide'
 import { RecordItem, useRecordsStore } from './stores/records'
 import { useUserEntitiesStore } from './stores/userEntities'
 // import testData from './test_data/data.json'
@@ -5,6 +6,7 @@ import { useUserEntitiesStore } from './stores/userEntities'
 export const useTestData = () => {
   const { addRecord, resetAllRecords } = useRecordsStore()
   const { resetUserEntities } = useUserEntitiesStore()
+  const { resetLittleUserGuideStore } = useLittleUserGuideStore()
 
   const testData = []
   const insertTestData = () =>
@@ -12,6 +14,7 @@ export const useTestData = () => {
   const resetData = () => {
     resetAllRecords()
     resetUserEntities()
+    resetLittleUserGuideStore()
   }
 
   return { insertTestData, resetData }
