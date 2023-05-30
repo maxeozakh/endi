@@ -9,7 +9,7 @@ import { Routes, useNavigator3000 } from '../shared/useNavigator3000'
 export const Welcome: React.FC = () => {
   const navigation = useNavigator3000()
   const { setIsWasShown } = useLittleUserGuideStore()
-  const fontSize = 40
+  const fontSize = 36
 
   const handlePressStart = () => {
     setIsWasShown(true)

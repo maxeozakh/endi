@@ -37,8 +37,9 @@ export const MetricGalleryCard: React.FC<Props> = ({ index }) => {
           />
         ))}
       </View>
-      <Text style={styles.hugeEmoji}>{metricValue ? ESTIMATE_MAP[metricValue].emoji : '🫥'}</Text>
-      <Text style={styles.title}>{name}</Text>
+      <View style={styles.valueWrapper}>
+        <Text style={styles.title}>{name}</Text>
+      </View>
     </View>
   )
 }
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   hugeEmoji: {
-    marginTop: 8,
+    marginLeft: 8,
     fontSize: 100,
   },
   container: {
@@ -58,7 +59,12 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'lightgray',
     alignItems: 'center',
+    justifyContent: 'space-evenly',
     borderRadius: 16,
+  },
+  valueWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   buttonContainer: {
