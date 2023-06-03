@@ -19,7 +19,7 @@ import { Settings } from './src/pages/Settings'
 import { TrackMetrics } from './src/pages/TrackMetrics'
 import { TrackTags } from './src/pages/TrackTags'
 import { Welcome } from './src/pages/Welcome'
-import { getIsWasShown } from './src/shared/stores/littleUserGuide'
+import { getIsHasHydrated, getIsWasShown } from './src/shared/stores/littleUserGuide'
 import { toastConfig } from './src/shared/toastConfig'
 import { UI_THEME } from './src/shared/ui/constants'
 import { RootStackParamList, Routes } from './src/shared/useNavigator3000'
@@ -38,11 +38,16 @@ export default function App() {
   const { activateNotification } = useReminder()
 
   const isUserGuideWasShown = getIsWasShown()
+  const isStoreAreHydrated = getIsHasHydrated()
   const initialRouteName = isUserGuideWasShown ? Routes.DASHBOARD : Routes.WELCOME
 
   useEffect(() => {
     activateNotification()
   }, [])
+
+  if (!isStoreAreHydrated) {
+    return null
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>

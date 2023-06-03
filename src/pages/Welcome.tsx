@@ -21,6 +21,7 @@ export const Welcome: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        padding: 4,
       }}>
       <TextTheme stylesProp={{ fontSize }}>yo! {'\n'}</TextTheme>
       <TextTheme stylesProp={{ fontSize }}>
