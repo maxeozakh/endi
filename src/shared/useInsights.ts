@@ -100,6 +100,21 @@ export const useInsights = () => {
     return correlationsWithoutZero
   }
 
+  const getMinAndMaxCorrelationsByMetric = (metricName: string) => {
+    const correlations = getCorrelationsByMetric(metricName)
+
+    if (!correlations.length) {
+      return null
+    }
+
+    const sortedCorrelations = correlations.sort((a, b) => a.correlation - b.correlation)
+
+    const minCorrelation = sortedCorrelations[0]
+    const maxCorrelation = sortedCorrelations[sortedCorrelations.length - 1]
+
+    return [minCorrelation, maxCorrelation]
+  }
+
   const getAverageMetricValue = (metricName: string) => {
     const recordsByPeriod =
       selectedPeriod === Period.WEEK
@@ -119,5 +134,10 @@ export const useInsights = () => {
     return metricAvg
   }
 
-  return { getCorrelationsByMetric, getAverageMetricValue, getCornerDatesByPeriod }
+  return {
+    getCorrelationsByMetric,
+    getAverageMetricValue,
+    getCornerDatesByPeriod,
+    getMinAndMaxCorrelationsByMetric,
+  }
 }

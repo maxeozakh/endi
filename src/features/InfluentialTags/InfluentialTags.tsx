@@ -9,8 +9,8 @@ interface InfluentialTagsProps {
 }
 
 export const InfluentialTags: React.FC<InfluentialTagsProps> = ({ metricName }) => {
-  const { getCorrelationsByMetric } = useInsights()
-  const correlations = getCorrelationsByMetric(metricName)
+  const { getMinAndMaxCorrelationsByMetric } = useInsights()
+  const correlations = getMinAndMaxCorrelationsByMetric(metricName)
 
   if (correlations.length === 0) {
     return null
