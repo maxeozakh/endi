@@ -104,7 +104,7 @@ export const useInsights = () => {
     const correlations = getCorrelationsByMetric(metricName)
 
     if (!correlations.length) {
-      return null
+      return []
     }
 
     const sortedCorrelations = correlations.sort((a, b) => a.correlation - b.correlation)
