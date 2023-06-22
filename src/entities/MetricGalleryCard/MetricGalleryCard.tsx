@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 100,
   },
   container: {
-    paddingTop: 44,
     paddingHorizontal: 24,
     height: '100%',
     backgroundColor: 'lightgray',
