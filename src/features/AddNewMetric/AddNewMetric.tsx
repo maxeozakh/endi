@@ -51,6 +51,7 @@ export const AddNewMetric: React.FC = () => {
     <View>
       <View style={styles.inputContainer}>
         <TextInput
+          autoCapitalize="none"
           autoFocus
           style={styles.input}
           value={metricName}
