@@ -12,14 +12,6 @@ import {
 } from '../../shared/stores/reminder'
 import { useReminder } from '../../shared/useReminder'
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-})
-
 export const ManageReminder: React.FC = () => {
   const { setTime, setIsEnabled } = useReminderStore()
   const { activateNotification } = useReminder()
