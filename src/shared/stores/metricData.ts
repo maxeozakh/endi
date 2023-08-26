@@ -14,7 +14,7 @@ interface Actions {
 export const useMetricDataStore = create<State & Actions>()(
   devtools(
     (set) => ({
-      selectedPeriod: Period.MONTH,
+      selectedPeriod: Period.WEEK,
 
       selectPeriod: (period) => set({ selectedPeriod: period }),
     }),
