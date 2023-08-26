@@ -37,14 +37,13 @@ export const useInsights = () => {
 
   const getCorrelationsByMetric = (metricName: string) => {
     const recordsByPeriod = getRecordsByPeriodAndMetric(selectedPeriod, metricName)
+    const activeUserTagNames = getActiveUserTags().map((tag) => tag.name)
     // period, metricName =>
     // all correlations between given metric and tags by the period
 
     if (!recordsByPeriod.length) {
       return []
     }
-
-    const activeUserTagNames = getActiveUserTags().map((tag) => tag.name)
 
     const correlations = activeUserTagNames.map((tag) => {
       let metricTotalValue = 0
