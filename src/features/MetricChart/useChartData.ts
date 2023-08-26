@@ -21,11 +21,10 @@ const cornerRadiusStyles = {
 
 export const useChartData = (metricName: string) => {
   const selectedPeriod = getSelectedPeriod()
-
+  const metricData = getUserMetricByName(metricName)
   const data = getChartDataByPeriod(selectedPeriod, metricName)
 
   const barWidth = selectedPeriod === Period.WEEK ? 35 : 10
-  const metricData = getUserMetricByName(metricName)
   const { color } = metricData
   const barStyles = {
     data: { fill: color, width: barWidth },
@@ -55,11 +54,21 @@ export const getChartDataByPeriod = (period: Period, metricName: string) => {
   const dataStructure = getChartStrucutre(period)
 
   const chartData = dataStructure.map((day) => {
-    const dayRecord = records.find((record) => {
-      return new Date(record.date).toDateString() === new Date(day).toDateString()
+    const dayRecords = records.filter((record) => {
+      return (
+        new Date(record.date).toDateString() === new Date(day).toDateString() &&
+        record.metrics[metricName]
+      )
     })
 
-    const value = dayRecord?.metrics[metricName] || null
+    let value: number | null = null
+
+    if (dayRecords.length !== 0) {
+      value =
+        dayRecords.reduce((acc, record) => {
+          return acc + record.metrics[metricName] ?? 0
+        }, 0) / dayRecords.length
+    }
 
     return {
       day,
